@@ -1,8 +1,14 @@
 package com.finclutech.dynamic_form_manager.dtos.common;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CommonApiResponse<T> {
 
     private boolean isSuccess;
@@ -10,9 +16,6 @@ public class CommonApiResponse<T> {
     private T data;
 
     private ErrorDetails errorDetails;
-
-    public CommonApiResponse() {
-    }
 
     public CommonApiResponse(T data) {
         this.isSuccess = true;

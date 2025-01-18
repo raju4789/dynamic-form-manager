@@ -1,9 +1,9 @@
 
-----Insert Customers
---INSERT IGNORE INTO app_user(username, first_name, last_name, email, password, role, record_created_date, record_created_by, is_active)
---VALUES
---  ('admin', 'admin', 'admin', 'admin@gmail.com', '$2b$04$oZOGGm.sCkWzwqRAzuWpOezA709GaQs1KZV4xPh69DnnCD4GKSrdW', 'ADMIN', NOW(), UUID(), true);
---
+--Insert User
+INSERT IGNORE INTO app_user(username, first_name, last_name, email, password, role, record_created_date, record_created_by, is_active)
+VALUES
+  ('admin', 'admin', 'admin', 'admin@gmail.com', '$2b$04$oZOGGm.sCkWzwqRAzuWpOezA709GaQs1KZV4xPh69DnnCD4GKSrdW', 'ADMIN', NOW(), UUID(), true),
+  ('user', 'user', 'user', 'user@gmail.com', '$2b$04$oZOGGm.sCkWzwqRAzuWpOezA709GaQs1KZV4xPh69DnnCD4GKSrdW', 'USER', NOW(), UUID(), true);
 
 -- Insert Languages
 INSERT IGNORE INTO languages (language_id, language_code, language_name, created_at, updated_at) VALUES

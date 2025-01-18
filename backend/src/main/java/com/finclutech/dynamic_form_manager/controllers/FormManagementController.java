@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/manage")
 @RequiredArgsConstructor
 @Tag(name = "Service Form Manager", description = "Service Form Manager APIs")
 public class FormManagementController {
