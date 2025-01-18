@@ -8,8 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,9 +34,8 @@ import java.io.IOException;
  */
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
-
-    private static final Logger logger = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
     private final JWTService jwtService;
     private final UserDetailsService userDetailsService;
@@ -78,7 +77,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         try {
             // Skip authentication for whitelisted endpoints
             if (requestMatcher.matches(request)) {
-                logger.info("Skipping authentication for whitelisted endpoint: {}", request.getRequestURI());
+                log.info("Skipping authentication for whitelisted endpoint: {}", request.getRequestURI());
                 filterChain.doFilter(request, response);
                 return;
             }
@@ -86,7 +85,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             // Extract the Authorization header
             final String authorizationHeader = request.getHeader(authorizationHeaderString);
             if (authorizationHeader == null || !authorizationHeader.startsWith(tokenPrefix)) {
-                logger.warn("No JWT token found in request headers for URI: {}", request.getRequestURI());
+                log.warn("No JWT token found in request headers for URI: {}", request.getRequestURI());
                 throw new InvalidRequestException("No JWT token found in request headers");
             }
 
@@ -96,11 +95,11 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
             // Validate the token and set the authentication context
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                logger.info("Validating JWT token for username: {}", username);
+                log.info("Validating JWT token for username: {}", username);
 
                 final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 if (jwtService.isTokenValid(jwtToken, userDetails)) {
-                    logger.info("JWT token is valid for username: {}", username);
+                    log.info("JWT token is valid for username: {}", username);
 
                     // Create an authentication token and set it in the security context
                     final UsernamePasswordAuthenticationToken authenticationToken =
@@ -112,17 +111,17 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                     authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 } else {
-                    logger.warn("Invalid JWT token for username: {}", username);
+                    log.warn("Invalid JWT token for username: {}", username);
                 }
             }
 
             // Continue with the filter chain
             filterChain.doFilter(request, response);
         } catch (InvalidRequestException | UsernameNotFoundException e) {
-            logger.error("Authentication error: {}", e.getMessage(), e);
+            log.error("Authentication error: {}", e.getMessage(), e);
             resolver.resolveException(request, response, null, e);
         } catch (Exception e) {
-            logger.error("Unexpected error during authentication: {}", e.getMessage(), e);
+            log.error("Unexpected error during authentication: {}", e.getMessage(), e);
             resolver.resolveException(request, response, null, e);
         }
     }

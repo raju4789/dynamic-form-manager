@@ -1,6 +1,7 @@
 package com.finclutech.dynamic_form_manager.config.security;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -21,9 +22,9 @@ import org.slf4j.LoggerFactory;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@Slf4j
 public class SecurityFilterConfig {
 
-    private static final Logger logger = LoggerFactory.getLogger(SecurityFilterConfig.class);
 
     private final JWTAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
@@ -37,7 +38,7 @@ public class SecurityFilterConfig {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        logger.info("Configuring security filter chain...");
+        log.info("Configuring security filter chain...");
 
         httpSecurity
                 // Disable CSRF as we are using stateless JWT authentication
@@ -45,7 +46,7 @@ public class SecurityFilterConfig {
 
                 // Define authorization rules for endpoints
                 .authorizeHttpRequests(authorizeHttpRequests -> {
-                    logger.info("Defining authorization rules...");
+                    log.info("Defining authorization rules...");
                     authorizeHttpRequests
                             .requestMatchers(new AntPathRequestMatcher("/api/v1/auth/**")).permitAll() // Public endpoints
                             .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll() // Swagger UI
@@ -56,7 +57,7 @@ public class SecurityFilterConfig {
 
                 // Configure session management to be stateless
                 .sessionManagement(sessionManagement -> {
-                    logger.info("Configuring session management as stateless...");
+                    log.info("Configuring session management as stateless...");
                     sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                 })
 
@@ -66,7 +67,7 @@ public class SecurityFilterConfig {
                 // Add the JWT authentication filter before the UsernamePasswordAuthenticationFilter
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        logger.info("Security filter chain configured successfully.");
+        log.info("Security filter chain configured successfully.");
         return httpSecurity.build();
     }
 }

@@ -5,6 +5,7 @@ import com.finclutech.dynamic_form_manager.dtos.response.FieldsResponse;
 import com.finclutech.dynamic_form_manager.exceptions.RecordNotFoundException;
 import com.finclutech.dynamic_form_manager.repositories.sql.*;
 import com.finclutech.dynamic_form_manager.entities.sql.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class FormManagerServiceImpl implements FormManagerService {
 
     private final ServiceRepository serviceRepository;
@@ -23,14 +25,6 @@ public class FormManagerServiceImpl implements FormManagerService {
     private final FieldTranslationRepository fieldTranslationRepository;
     private final FieldOptionRepository fieldOptionRepository;
     private final LanguageRepository languageRepository;
-
-    public FormManagerServiceImpl(ServiceRepository serviceRepository, FieldRepository fieldRepository, FieldTranslationRepository fieldTranslationRepository, FieldOptionRepository fieldOptionRepository, LanguageRepository languageRepository) {
-        this.serviceRepository = serviceRepository;
-        this.fieldRepository = fieldRepository;
-        this.fieldTranslationRepository = fieldTranslationRepository;
-        this.fieldOptionRepository = fieldOptionRepository;
-        this.languageRepository = languageRepository;
-    }
 
     @Override
     public List<AppServiceDTO> getAllServices() throws RecordNotFoundException {
