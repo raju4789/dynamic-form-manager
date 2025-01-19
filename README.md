@@ -1,2 +1,190 @@
-# dynamic-form-manager
-A web application designed to enable dynamic form generation, secure data submission, efficient data management, and insightful visualization
+# Dynamic Form Manager
+
+Dynamic Form Manager is a full-stack web application designed to enable dynamic form generation, secure data submission, efficient data management, and insightful visualization. The application supports multiple services, each with its own unique form configuration, and provides a dashboard for administrators to monitor submissions and trends.
+
+---
+
+## Summary
+
+Dynamic Form Manager is a robust solution for managing service-specific forms dynamically. It allows users to:
+- Dynamically generate forms based on service configurations.
+- Submit and validate form data securely.
+- View submitted data with filtering, sorting, and pagination.
+- Visualize key metrics and trends through an admin dashboard.
+
+The application is built with a modern tech stack, ensuring scalability, security, and a user-friendly experience.
+
+---
+
+## Features
+
+### Backend
+- **Dynamic Form Configuration**: Load service-specific field configurations from the database.
+- **Secure Data Submission**: Validate and store form submissions securely.
+- **Data Retrieval**: Retrieve submitted data with filtering, sorting, and pagination.
+- **Dashboard**: Visualize submission trends and service usage statistics.
+- **Authentication**: Secure endpoints with JWT-based authentication.
+- **Authorization**: Role based authorization.
+
+### Frontend
+- **Dynamic Form Rendering**: Generate forms dynamically based on service configurations.
+- **User-Friendly UI**: Intuitive interface for form submission and data visualization.
+- **Dashboard**: Interactive charts and metrics for administrators.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+
+---
+
+## Tech Stack
+
+### Backend
+- **Language**: Java
+- **Framework**: Spring Boot
+- **Database**: MySQL (for relational data) and MongoDB (for form submissions)
+- **Authentication**: JWT
+- **Build Tool**: Maven
+- **Containerization**: Docker
+
+### Frontend
+- **Framework**: React
+- **Styling**: Material-UI and Styled Components
+- **State Management**: React Hooks
+- **Build Tool**: Vite
+- **Testing**: Vitest and React Testing Library
+
+---
+
+## Directory Structure
+
+```
+raju4789-dynamic-form-manager/
+├── backend/                # Backend codebase
+│   ├── src/                # Source code
+│   ├── test/               # Unit tests
+│   ├── docker-compose.yml  # Docker configuration for backend services
+│   └── pom.xml             # Maven configuration
+└── ui/                     # Frontend codebase
+    ├── src/                # Source code
+    ├── public/             # Static assets
+    ├── Dockerfile          # Docker configuration for frontend
+    └── package.json        # NPM configuration
+```
+
+---
+
+## Setup Instructions
+
+### Prerequisites
+- **Java 17**
+- **Node.js 18+**
+- **Docker**
+- **MySQL** and **MongoDB** (if not using Docker)
+
+### Backend Setup
+1. Navigate to the `backend` directory:
+   ```bash
+   cd backend
+   ```
+2. Build the project:
+   ```bash
+   ./mvnw clean install
+   ```
+3. Start the backend services using Docker:
+   ```bash
+   docker-compose up -d
+   ```
+4. Access the backend API at `http://localhost:8080`.
+
+### Frontend Setup
+1. Navigate to the `ui` directory:
+   ```bash
+   cd ui
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Access the frontend at `http://localhost:8001`.
+
+---
+
+## Database Setup
+
+### MySQL
+1. Create a database named `finclutech_db`.
+2. Update the `application.yml` file in the backend with your MySQL credentials.
+3. Run the SQL scripts in `backend/src/main/resources/data.sql` to initialize the database.
+
+### MongoDB
+1. Ensure MongoDB is running on `localhost:27017`.
+2. Update the `application.yml` file in the backend with your MongoDB URI.
+3. Import the sample data from `backend/src/main/resources/user_forms.json`.
+
+---
+
+## API Endpoints
+
+### Authentication
+- **POST** `/api/v1/auth/authenticate`: Authenticate a user and retrieve a JWT token.
+- **POST** `/api/v1/auth/validateToken`: Validate a JWT token.
+
+### Form Management
+- **GET** `/api/v1/manage/service`: Retrieve all services.
+- **GET** `/api/v1/manage/service/fields/{id}`: Retrieve fields for a specific service.
+- **GET** `/api/v1/manage/language`: Retrieve all supported languages.
+
+### User Forms
+- **POST** `/api/v1/form/submit`: Submit form data.
+- **GET** `/api/v1/form/getFormData`: Retrieve submitted forms by service ID and user ID.
+
+### Dashboard
+- **GET** `/api/v1/dashboard/stats`: Retrieve dashboard statistics.
+
+### API Documentation
+Access the Swagger API documentation at: [Swagger API Documentation](http://localhost:8080/swagger-ui.html)
+
+---
+
+## Testing
+
+### Backend
+Run unit tests:
+```bash
+./mvnw test
+```
+
+### Frontend
+Run unit tests:
+```bash
+npm run test
+```
+
+---
+
+## Additional Notes
+
+- **Swagger Documentation**: Access API documentation at `http://localhost:8080/swagger-ui.html`.
+- **Admin Credentials**: Use the following credentials to log in as an admin:
+  - Username: `admin`
+  - Password: `admin@2025`
+- **User Credentials**: Use the following credentials to log in as a user:
+  - Username: `user`
+  - Password: `admin@2025`
+
+---
+
+## Contributors
+
+- **Raju Methuku**
+  - [LinkedIn](https://www.linkedin.com/in/raju-m-l-n/)
+  - [Medium](https://medium.com/@narasimha4789)
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+```
