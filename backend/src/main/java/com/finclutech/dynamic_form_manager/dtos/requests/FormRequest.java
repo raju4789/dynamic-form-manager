@@ -19,7 +19,6 @@ public class FormRequest {
     @NotBlank(message = "formId is mandatory")
     private String formId;
 
-    @NotBlank(message = "serviceId is mandatory")
     private Long serviceId;
 
     @NotBlank(message = "userId is mandatory")

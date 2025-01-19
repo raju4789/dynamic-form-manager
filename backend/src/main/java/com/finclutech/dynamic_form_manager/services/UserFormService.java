@@ -10,5 +10,5 @@ public interface UserFormService {
 
     UserFormResponse saveUserForm(FormRequest formRequest);
 
-    List<FormDataResponse> getSubmittedForms(Long serviceId, String userId);
+    FormDataResponse getSubmittedForms(Long serviceId, String userId);
 }

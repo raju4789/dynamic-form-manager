@@ -1,5 +1,6 @@
 package com.finclutech.dynamic_form_manager.controllers;
 
+import com.finclutech.dynamic_form_manager.dtos.common.CommonApiResponse;
 import com.finclutech.dynamic_form_manager.dtos.response.DashboardStats;
 import com.finclutech.dynamic_form_manager.services.DashboardService;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +27,10 @@ public class DashboardController {
      * @return A ResponseEntity containing the DashboardStats object.
      */
     @GetMapping("/stats")
-    public ResponseEntity<DashboardStats> getDashboardStats() {
-        log.info("Received request to fetch dashboard statistics.");
-        DashboardStats stats = dashboardService.getDashboardStats();
-        log.info("Successfully fetched dashboard statistics.");
-        return ResponseEntity.ok(stats);
+    public ResponseEntity<CommonApiResponse<DashboardStats>> getDashboardStats() {
+        log.info("Fetching dashboard statistics...");
+        DashboardStats dashboardStats = dashboardService.getDashboardStats();
+        CommonApiResponse<DashboardStats> response = new CommonApiResponse<>(dashboardStats);
+        return ResponseEntity.ok(response);
     }
 }

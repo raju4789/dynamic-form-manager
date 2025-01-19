@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,7 +62,7 @@ public class UserFormServiceImpl implements UserFormService {
      * @return A list of FormDataResponse DTOs containing the form data and creation timestamps.
      */
     @Override
-    public List<FormDataResponse> getSubmittedForms(Long serviceId, String userId) {
+    public FormDataResponse getSubmittedForms(Long serviceId, String userId) {
         log.info("Attempting to get all submitted forms for serviceId: {}, userId: {}", serviceId, userId);
 
         try {
@@ -70,26 +71,26 @@ public class UserFormServiceImpl implements UserFormService {
 
             if (userForms.isEmpty()) {
                 log.info("No submitted forms found for serviceId: {}, userId: {}", serviceId, userId);
-                return List.of();
+                return new FormDataResponse(List.of()); // Return an empty FormDataResponse
             }
 
-            // Map UserForm entities to FormDataResponse DTOs
-            List<FormDataResponse> formDataResponses = userForms.stream()
-                    .map(userForm -> FormDataResponse.builder()
-                            .formData(List.of(userForm.getFormData())) // Wrap the Map in a List
-                            .build())
+            // Map UserForm entities to a single FormDataResponse DTO
+            List<Map<String, Object>> formDataList = userForms.stream()
+                    .map(UserForm::getFormData) // Extract the formData map from each UserForm
                     .collect(Collectors.toList());
 
-            log.info("Successfully fetched {} submitted forms for serviceId: {}, userId: {}",
-                    formDataResponses.size(), serviceId, userId);
+            FormDataResponse formDataResponse = new FormDataResponse(formDataList);
 
-            return formDataResponses;
+            log.info("Successfully fetched {} submitted forms for serviceId: {}, userId: {}",
+                    formDataList.size(), serviceId, userId);
+
+            return formDataResponse;
         } catch (Exception e) {
             log.error("Failed to fetch submitted forms for serviceId: {}, userId: {}. Error: {}",
                     serviceId, userId, e.getMessage(), e);
 
-            // Return an empty list in case of an error
-            return List.of();
+            // Return an empty FormDataResponse in case of an error
+            return new FormDataResponse(List.of());
         }
     }
     /**

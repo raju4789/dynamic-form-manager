@@ -81,13 +81,13 @@ public class UserFormController {
                     @ApiResponse(responseCode = "500", description = "Internal server error"),
             })
     @GetMapping("/getFormData")
-    public ResponseEntity<CommonApiResponse<List<FormDataResponse>>> getFormData(@RequestParam Long serviceId, @RequestParam String userId) {
+    public ResponseEntity<CommonApiResponse<FormDataResponse>> getFormData(@RequestParam Long serviceId, @RequestParam String userId) {
         try {
             // Call the service to get the form data
-            List<FormDataResponse> formDataResponse = userFormService.getSubmittedForms(serviceId, userId);
+            FormDataResponse formDataResponse = userFormService.getSubmittedForms(serviceId, userId);
 
             // Create a success response
-            CommonApiResponse<List<FormDataResponse>> response = new CommonApiResponse<>(formDataResponse);
+            CommonApiResponse<FormDataResponse> response = new CommonApiResponse<>(formDataResponse);
 
             return ResponseEntity.ok(response);
 
@@ -101,7 +101,7 @@ public class UserFormController {
                     .errorMessage("An unexpected error occurred. Please try again later.")
                     .build();
 
-            CommonApiResponse<List<FormDataResponse>> response = new CommonApiResponse<>(errorDetails);
+            CommonApiResponse<FormDataResponse> response = new CommonApiResponse<>(errorDetails);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }

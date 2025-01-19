@@ -105,7 +105,7 @@ class UserFormServiceImplTest {
         when(userFormRepository.findByServiceIdAndUserId(serviceId, userId)).thenReturn(List.of(userForm1, userForm2));
 
         // Act
-        List<FormDataResponse> responses = userFormService.getSubmittedForms(serviceId, userId);
+        FormDataResponse responses = userFormService.getSubmittedForms(serviceId, userId);
 
         // Assert
         assertNotNull(responses);
