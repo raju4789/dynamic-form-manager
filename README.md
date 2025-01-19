@@ -24,6 +24,7 @@ The application is built with a modern tech stack, ensuring scalability, securit
 - **Data Retrieval**: Retrieve submitted data with filtering, sorting, and pagination.
 - **Dashboard**: Visualize submission trends and service usage statistics.
 - **Authentication**: Secure endpoints with JWT-based authentication.
+- **Authorization**: Role based authorization.
 
 ### Frontend
 - **Dynamic Form Rendering**: Generate forms dynamically based on service configurations.
@@ -144,27 +145,6 @@ raju4789-dynamic-form-manager/
 
 ### API Documentation
 Access the Swagger API documentation at: [Swagger API Documentation](http://localhost:8080/swagger-ui.html)
-
----
-
-## Deployment Instructions
-
-### Backend
-1. Build the backend JAR:
-   ```bash
-   ./mvnw clean package
-   ```
-2. Run the JAR file:
-   ```bash
-   java -jar target/dynamic-form-manager-0.0.1-SNAPSHOT.jar
-   ```
-
-### Frontend
-1. Build the frontend:
-   ```bash
-   npm run build
-   ```
-2. Serve the static files using a web server (e.g., Nginx).
 
 ---
 
