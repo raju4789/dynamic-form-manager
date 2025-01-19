@@ -21,6 +21,21 @@ The application is built with a modern tech stack, ensuring scalability, securit
 [![Watch the demo](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo_thumbnail.png)](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo.mp4)
 
 
+<img width="1728" alt="Screenshot 2568-01-19 at 22 29 07" src="https://github.com/user-attachments/assets/7bebc4f2-87df-43ac-af57-5953f25396cd" />
+
+
+<img width="1727" alt="Screenshot 2568-01-19 at 22 30 06" src="https://github.com/user-attachments/assets/6dd4373f-48a8-457a-82e4-37e36361cdc8" />
+
+
+<img width="1728" alt="Screenshot 2568-01-19 at 22 30 59" src="https://github.com/user-attachments/assets/438036b5-c320-4aa2-b73b-01c21280e545" />
+
+
+<img width="1728" alt="Screenshot 2568-01-19 at 22 33 59" src="https://github.com/user-attachments/assets/f01a59a0-f3bf-4c21-80ac-6d14be187661" />
+
+
+<img width="1704" alt="Screenshot 2568-01-19 at 22 34 24" src="https://github.com/user-attachments/assets/f8f98068-0ca5-4146-9764-745d8717e275" />
+
+
 ## Features
 
 ### Backend
