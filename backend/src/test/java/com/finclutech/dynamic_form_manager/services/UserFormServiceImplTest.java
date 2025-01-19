@@ -31,17 +31,17 @@ class UserFormServiceImplTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    // Tests for saveUserForm
     @Test
     void saveUserForm_ShouldReturnSuccessResponse_WhenFormIsSavedSuccessfully() {
-        // Arrange
         FormRequest formRequest = FormRequest.builder()
+                .formId("form123")
                 .serviceId(100L)
                 .userId("user123")
                 .formData(Map.of("key1", "value1", "key2", "value2"))
                 .build();
 
         UserForm userForm = UserForm.builder()
+                .formId("form123")
                 .serviceId(100L)
                 .userId("user123")
                 .formData(Map.of("key1", "value1", "key2", "value2"))
@@ -50,10 +50,8 @@ class UserFormServiceImplTest {
 
         when(userFormRepository.save(any(UserForm.class))).thenReturn(userForm);
 
-        // Act
         UserFormResponse response = userFormService.saveUserForm(formRequest);
 
-        // Assert
         assertNotNull(response);
         assertTrue(response.isStatus());
         assertEquals(userForm.getFormData(), response.getFormData());
@@ -62,8 +60,8 @@ class UserFormServiceImplTest {
 
     @Test
     void saveUserForm_ShouldReturnFailureResponse_WhenExceptionOccurs() {
-        // Arrange
         FormRequest formRequest = FormRequest.builder()
+                .formId("form123")
                 .serviceId(100L)
                 .userId("user123")
                 .formData(Map.of("key1", "value1", "key2", "value2"))
@@ -71,24 +69,21 @@ class UserFormServiceImplTest {
 
         when(userFormRepository.save(any(UserForm.class))).thenThrow(new RuntimeException("Database error"));
 
-        // Act
         UserFormResponse response = userFormService.saveUserForm(formRequest);
 
-        // Assert
         assertNotNull(response);
         assertFalse(response.isStatus());
         assertNull(response.getFormData());
         verify(userFormRepository, times(1)).save(any(UserForm.class));
     }
 
-    // Tests for getSubmittedForms
     @Test
     void getSubmittedForms_ShouldReturnFormDataResponses_WhenFormsExist() {
-        // Arrange
         Long serviceId = 100L;
         String userId = "user123";
 
         UserForm userForm1 = UserForm.builder()
+                .formId("form1")
                 .serviceId(serviceId)
                 .userId(userId)
                 .formData(Map.of("key1", "value1"))
@@ -96,6 +91,7 @@ class UserFormServiceImplTest {
                 .build();
 
         UserForm userForm2 = UserForm.builder()
+                .formId("form2")
                 .serviceId(serviceId)
                 .userId(userId)
                 .formData(Map.of("key2", "value2"))
@@ -104,48 +100,40 @@ class UserFormServiceImplTest {
 
         when(userFormRepository.findByServiceIdAndUserId(serviceId, userId)).thenReturn(List.of(userForm1, userForm2));
 
-        // Act
-        FormDataResponse responses = userFormService.getSubmittedForms(serviceId, userId);
+        FormDataResponse response = userFormService.getSubmittedForms(serviceId, userId);
 
-        // Assert
-        assertNotNull(responses);
-        assertEquals(2, responses.size());
-        assertEquals("value1", responses.get(0).getFormData().get(0).get("key1"));
-        assertEquals("value2", responses.get(1).getFormData().get(0).get("key2"));
+        assertNotNull(response);
+        assertEquals(2, response.getFormData().size());
+        assertEquals("value1", response.getFormData().get(0).get("key1"));
+        assertEquals("value2", response.getFormData().get(1).get("key2"));
         verify(userFormRepository, times(1)).findByServiceIdAndUserId(serviceId, userId);
     }
 
     @Test
-    void getSubmittedForms_ShouldReturnEmptyList_WhenNoFormsExist() {
-        // Arrange
+    void getSubmittedForms_ShouldReturnEmptyResponse_WhenNoFormsExist() {
         Long serviceId = 100L;
         String userId = "user123";
 
         when(userFormRepository.findByServiceIdAndUserId(serviceId, userId)).thenReturn(List.of());
 
-        // Act
-        List<FormDataResponse> responses = userFormService.getSubmittedForms(serviceId, userId);
+        FormDataResponse response = userFormService.getSubmittedForms(serviceId, userId);
 
-        // Assert
-        assertNotNull(responses);
-        assertTrue(responses.isEmpty());
+        assertNotNull(response);
+        assertTrue(response.getFormData().isEmpty());
         verify(userFormRepository, times(1)).findByServiceIdAndUserId(serviceId, userId);
     }
 
     @Test
-    void getSubmittedForms_ShouldReturnEmptyList_WhenExceptionOccurs() {
-        // Arrange
+    void getSubmittedForms_ShouldReturnEmptyResponse_WhenExceptionOccurs() {
         Long serviceId = 100L;
         String userId = "user123";
 
         when(userFormRepository.findByServiceIdAndUserId(serviceId, userId)).thenThrow(new RuntimeException("Database error"));
 
-        // Act
-        List<FormDataResponse> responses = userFormService.getSubmittedForms(serviceId, userId);
+        FormDataResponse response = userFormService.getSubmittedForms(serviceId, userId);
 
-        // Assert
-        assertNotNull(responses);
-        assertTrue(responses.isEmpty());
+        assertNotNull(response);
+        assertTrue(response.getFormData().isEmpty());
         verify(userFormRepository, times(1)).findByServiceIdAndUserId(serviceId, userId);
     }
 }

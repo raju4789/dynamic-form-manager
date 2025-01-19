@@ -18,7 +18,7 @@ services:
     networks:
       - app_network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p$MYSQL_ROOT_PASSWORD"]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -66,6 +66,26 @@ services:
     ports:
       - "8081:8081" # Access Mongo Express on http://localhost:8081
     depends_on:
+      - mongodb
+    networks:
+      - app_network
+
+  # Spring Boot Service
+  spring-boot-app:
+    build:
+      context: . # Use the current directory as the build context
+      dockerfile: Dockerfile # Specify the Dockerfile to use
+    container_name: spring_boot_container
+    restart: always
+    ports:
+      - "8080:8080" # Expose Spring Boot on port 8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/finclutech_db
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin@2025
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/finclutech_db
+    depends_on:
+      - mysql
       - mongodb
     networks:
       - app_network
