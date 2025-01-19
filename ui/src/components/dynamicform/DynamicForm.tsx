@@ -118,6 +118,7 @@ const DynamicForm: React.FC = () => {
       };
 
       const onAllSubmittedFormsClick = ()=> {
+        
         navigate(`/forms/${id}/${getUserName()}`);
       }
   
