@@ -16,6 +16,10 @@ The application is built with a modern tech stack, ensuring scalability, securit
 
 ---
 
+### Demo
+
+[![Watch Demo]([video-thumbnail.png](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo_thumbnail.png))]([video.mp4](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo.mp4))
+
 
 ## Features
 
