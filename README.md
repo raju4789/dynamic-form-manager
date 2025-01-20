@@ -1,7 +1,3 @@
-Here’s the updated and professional documentation with the Git Ingest link integrated:
-
----
-
 # Dynamic Form Manager
 
 Dynamic Form Manager is a comprehensive full-stack web application designed to streamline the creation, submission, and management of dynamic forms. It empowers organizations to configure service-specific forms, securely collect and manage data, and gain actionable insights through an intuitive admin dashboard. The application is built with a modern, scalable tech stack, ensuring a seamless user experience and robust performance.
