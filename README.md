@@ -100,7 +100,7 @@ dynamic-form-manager/
 
 ---
 
-## Database Configuration
+## Database Configuration(Optional if you are using docker)
 
 ### MySQL
 1. Create a database named `finclutech_db`.
