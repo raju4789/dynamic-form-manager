@@ -147,7 +147,7 @@ Access the Swagger API documentation at: [Swagger API Documentation](http://loca
 
 ## Demo
 
-Explore the application in action through the demo video and screenshots:
+Explore the application in action through the demo video(available in demo folder) and screenshots:
 
 [![Watch the demo](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo_thumbnail.png)](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo.mp4)
 
