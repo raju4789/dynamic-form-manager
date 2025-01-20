@@ -165,11 +165,11 @@ Access the complete source code and additional resources on Git Ingest:
 
 - **Admin Credentials**:  
   - Username: `admin`  
-  - Password: `admin@2025`  
+  - Password: `admin@4789`  
 
 - **User Credentials**:  
   - Username: `user`  
-  - Password: `admin@2025`  
+  - Password: `admin@4789`  
 
 - **Swagger Documentation**: Access API documentation at `http://localhost:8080/swagger-ui.html`.
 
