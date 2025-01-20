@@ -1,55 +1,26 @@
+Here’s the updated and professional documentation with the Git Ingest link integrated:
+
+---
+
 # Dynamic Form Manager
 
-Dynamic Form Manager is a full-stack web application designed to enable dynamic form generation, secure data submission, efficient data management, and insightful visualization. The application supports multiple services, each with its own unique form configuration, and provides a dashboard for administrators to monitor submissions and trends.
+Dynamic Form Manager is a comprehensive full-stack web application designed to streamline the creation, submission, and management of dynamic forms. It empowers organizations to configure service-specific forms, securely collect and manage data, and gain actionable insights through an intuitive admin dashboard. The application is built with a modern, scalable tech stack, ensuring a seamless user experience and robust performance.
 
 ---
 
-## Summary
+## Key Features
 
-Dynamic Form Manager is a robust solution for managing service-specific forms dynamically. It allows users to:
-- Dynamically generate forms based on service configurations.
-- Submit and validate form data securely.
-- View submitted data with filtering, sorting, and pagination.
-- Visualize key metrics and trends through an admin dashboard.
+### Backend Capabilities
+- **Dynamic Form Configuration**: Load and manage service-specific form fields dynamically from the database.
+- **Secure Data Submission**: Validate and store form submissions with robust security measures.
+- **Data Management**: Retrieve submitted data with advanced filtering, sorting, and pagination options.
+- **Dashboard Analytics**: Visualize submission trends and service usage statistics through interactive charts.
+- **Authentication & Authorization**: Secure endpoints with JWT-based authentication and role-based access control.
 
-The application is built with a modern tech stack, ensuring scalability, security, and a user-friendly experience.
-
----
-
-### Demo
-
-[![Watch the demo](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo_thumbnail.png)](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo.mp4)
-
-
-<img width="1728" alt="Screenshot 2568-01-19 at 22 29 07" src="https://github.com/user-attachments/assets/7bebc4f2-87df-43ac-af57-5953f25396cd" />
-
-
-<img width="1727" alt="Screenshot 2568-01-19 at 22 30 06" src="https://github.com/user-attachments/assets/6dd4373f-48a8-457a-82e4-37e36361cdc8" />
-
-
-<img width="1728" alt="Screenshot 2568-01-19 at 22 30 59" src="https://github.com/user-attachments/assets/438036b5-c320-4aa2-b73b-01c21280e545" />
-
-
-<img width="1728" alt="Screenshot 2568-01-19 at 22 33 59" src="https://github.com/user-attachments/assets/f01a59a0-f3bf-4c21-80ac-6d14be187661" />
-
-
-<img width="1704" alt="Screenshot 2568-01-19 at 22 34 24" src="https://github.com/user-attachments/assets/f8f98068-0ca5-4146-9764-745d8717e275" />
-
-
-## Features
-
-### Backend
-- **Dynamic Form Configuration**: Load service-specific field configurations from the database.
-- **Secure Data Submission**: Validate and store form submissions securely.
-- **Data Retrieval**: Retrieve submitted data with filtering, sorting, and pagination.
-- **Dashboard**: Visualize submission trends and service usage statistics.
-- **Authentication**: Secure endpoints with JWT-based authentication.
-- **Authorization**: Role based authorization.
-
-### Frontend
-- **Dynamic Form Rendering**: Generate forms dynamically based on service configurations.
-- **User-Friendly UI**: Intuitive interface for form submission and data visualization.
-- **Dashboard**: Interactive charts and metrics for administrators.
+### Frontend Capabilities
+- **Dynamic Form Rendering**: Automatically generate forms based on service configurations.
+- **User-Friendly Interface**: Intuitive and responsive UI for form submission and data visualization.
+- **Admin Dashboard**: Interactive metrics and charts for monitoring submissions and trends.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 
 ---
@@ -59,7 +30,7 @@ The application is built with a modern tech stack, ensuring scalability, securit
 ### Backend
 - **Language**: Java
 - **Framework**: Spring Boot
-- **Database**: MySQL (for relational data) and MongoDB (for form submissions)
+- **Database**: MySQL (relational data) and MongoDB (form submissions)
 - **Authentication**: JWT
 - **Build Tool**: Maven
 - **Containerization**: Docker
@@ -73,10 +44,12 @@ The application is built with a modern tech stack, ensuring scalability, securit
 
 ---
 
-## Directory Structure
+## Application Architecture
+
+The application is structured to ensure modularity, scalability, and maintainability. Below is the directory structure:
 
 ```
-raju4789-dynamic-form-manager/
+dynamic-form-manager/
 ├── backend/                # Backend codebase
 │   ├── src/                # Source code
 │   ├── test/               # Unit tests
@@ -131,7 +104,7 @@ raju4789-dynamic-form-manager/
 
 ---
 
-## Database Setup
+## Database Configuration
 
 ### MySQL
 1. Create a database named `finclutech_db`.
@@ -140,10 +113,9 @@ raju4789-dynamic-form-manager/
 ### MongoDB
 1. Ensure MongoDB is running on `localhost:27017`.
 2. Update the `application.yml` file in the backend with your MongoDB URI.
-3. Import the sample data from `backend/src/main/resources/user_forms.json`(OPTIONAL).
-
-   ```
-    docker exec -it {docker id} mongoimport --db submissions_db --collection user_forms --file ./user_forms.json --jsonArray
+3. (Optional) Import sample data:
+   ```bash
+   docker exec -it {docker_id} mongoimport --db submissions_db --collection user_forms --file ./user_forms.json --jsonArray
    ```
 
 ---
@@ -171,24 +143,46 @@ Access the Swagger API documentation at: [Swagger API Documentation](http://loca
 
 ---
 
-## Additional Notes
+## Demo
 
-- **Swagger Documentation**: Access API documentation at `http://localhost:8080/swagger-ui.html`.
-- **Admin Credentials**: Use the following credentials to log in as an admin:
-  - Username: `admin`
-  - Password: `admin@2025`
-- **User Credentials**: Use the following credentials to log in as a user:
-  - Username: `user`
-  - Password: `admin@2025`
+Explore the application in action through the demo video and screenshots:
+
+[![Watch the demo](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo_thumbnail.png)](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo.mp4)
+
+### Screenshots
+![Screenshot 1](https://github.com/user-attachments/assets/7bebc4f2-87df-43ac-af57-5953f25396cd)
+![Screenshot 2](https://github.com/user-attachments/assets/6dd4373f-48a8-457a-82e4-37e36361cdc8)
+![Screenshot 3](https://github.com/user-attachments/assets/438036b5-c320-4aa2-b73b-01c21280e545)
+![Screenshot 4](https://github.com/user-attachments/assets/f01a59a0-f3bf-4c21-80ac-6d14be187661)
+![Screenshot 5](https://github.com/user-attachments/assets/f8f98068-0ca5-4146-9764-745d8717e275)
 
 ---
 
-**Git Ingest** : https://gitingest.com/raju4789/dynamic-form-manager/tree/main
+## Git Repository
+
+Access the complete source code and additional resources on Git Ingest:  
+[Dynamic Form Manager Git Repository](https://gitingest.com/raju4789/dynamic-form-manager/tree/main)
+
+---
+
+## Additional Notes
+
+- **Admin Credentials**:  
+  - Username: `admin`  
+  - Password: `admin@2025`  
+
+- **User Credentials**:  
+  - Username: `user`  
+  - Password: `admin@2025`  
+
+- **Swagger Documentation**: Access API documentation at `http://localhost:8080/swagger-ui.html`.
+
+---
 
 ## Contributors
 
-- **Raju Methuku**
-  - [LinkedIn](https://www.linkedin.com/in/raju-m-l-n/)
+- **Raju Methuku**  
+  - [LinkedIn](https://www.linkedin.com/in/raju-m-l-n/)  
   - [Medium](https://medium.com/@narasimha4789)
 
 ---
@@ -196,4 +190,3 @@ Access the Swagger API documentation at: [Swagger API Documentation](http://loca
 ## License
 
 This project is licensed under the MIT License.
-```
