@@ -136,12 +136,15 @@ raju4789-dynamic-form-manager/
 ### MySQL
 1. Create a database named `finclutech_db`.
 2. Update the `application.yml` file in the backend with your MySQL credentials.
-3. Run the SQL scripts in `backend/src/main/resources/data.sql` to initialize the database.
 
 ### MongoDB
 1. Ensure MongoDB is running on `localhost:27017`.
 2. Update the `application.yml` file in the backend with your MongoDB URI.
 3. Import the sample data from `backend/src/main/resources/user_forms.json`.
+
+   ```
+    docker exec -it {docker id} mongoimport --db submissions_db --collection user_forms --file ./user_forms.json --jsonArray
+   ```
 
 ---
 
