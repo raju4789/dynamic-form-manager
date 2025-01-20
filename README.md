@@ -140,7 +140,7 @@ raju4789-dynamic-form-manager/
 ### MongoDB
 1. Ensure MongoDB is running on `localhost:27017`.
 2. Update the `application.yml` file in the backend with your MongoDB URI.
-3. Import the sample data from `backend/src/main/resources/user_forms.json`.
+3. Import the sample data from `backend/src/main/resources/user_forms.json`(OPTIONAL).
 
    ```
     docker exec -it {docker id} mongoimport --db submissions_db --collection user_forms --file ./user_forms.json --jsonArray
@@ -168,22 +168,6 @@ raju4789-dynamic-form-manager/
 
 ### API Documentation
 Access the Swagger API documentation at: [Swagger API Documentation](http://localhost:8080/swagger-ui.html)
-
----
-
-## Testing
-
-### Backend
-Run unit tests:
-```bash
-./mvnw test
-```
-
-### Frontend
-Run unit tests:
-```bash
-npm run test
-```
 
 ---
 
