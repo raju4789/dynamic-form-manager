@@ -144,6 +144,7 @@ Access the Swagger API documentation at: [Swagger API Documentation](http://loca
 1. Integrate Vault to read application secrets
 2. Implement caching to improve application response time
 3. Implement GZip compression to boost performance
+4. Integrate logging framework in UI
 
 ## Demo
 
