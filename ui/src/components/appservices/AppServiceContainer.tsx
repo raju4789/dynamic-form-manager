@@ -16,6 +16,16 @@ interface IServiceProps {
   backgroundColor: string;
 }
 
+const createCircularColorPicker = (colors: string[]) => {
+  let index = 0; 
+
+  return (): string => {
+    const color = colors[index]; 
+    index = (index + 1) % colors.length; 
+    return color;
+  };
+};
+
 const Service: React.FC<IServiceProps> = ({ id, icon, title, description, backgroundColor }) => {
   const navigate = useNavigate();
 
@@ -45,6 +55,9 @@ const AppServiceContainer: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Create a circular color picker instance
+  const getNextColor = createCircularColorPicker(COLORS);
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -68,11 +81,6 @@ const AppServiceContainer: React.FC = () => {
 
     fetchData();
   }, []);
-
-  const getRandomColor = (): string => {
-
-    return COLORS[Math.floor(Math.random() * COLORS.length)];
-  };
 
   return (
     <PageContainer>
@@ -99,7 +107,7 @@ const AppServiceContainer: React.FC = () => {
               icon={<Computer />}
               title={service.title}
               description={service.description}
-              backgroundColor={getRandomColor()}
+              backgroundColor={getNextColor()} // Use circular color picker
             />
           ))}
         </Grid>

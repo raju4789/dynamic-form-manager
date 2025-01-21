@@ -1,12 +1,12 @@
 export const COLORS = [
-    "#1565C0", // Blue
-    "#42A5F5", // Light Blue
-    "#E3F2FD", // Very Light Blue
-    "#FFCCBC", // Light Orange
-    "#FFAB91", // Orange
-    "#C8E6C9", // Light Green
-    "#81C784", // Green
-    "#FFF59D", // Yellow
-    "#F48FB1", // Pink
-    "#ECEFF1", // Light Gray
-  ];
+  "#1E88E5", // Medium Blue
+  "#43A047", // Green
+  "#FDD835", // Yellow
+  "#E53935", // Red
+  "#8E24AA", // Purple
+  "#FF6F00", // Orange
+  "#00ACC1", // Cyan
+  "#6D4C41", // Brown
+  "#546E7A", // Blue Gray
+  "#757575", // Neutral Gray
+];
