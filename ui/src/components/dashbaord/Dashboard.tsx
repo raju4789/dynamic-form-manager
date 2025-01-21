@@ -17,6 +17,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { getDashboardStats } from "../../services/DashboardService";
+import log from "../../logger";
 
 interface ServiceSubmission {
   serviceId: number;
@@ -83,7 +84,7 @@ const Dashboard: React.FC = () => {
         const data = await getDashboardStats();
         setDashboardStats(data);
       } catch (error) {
-        console.error("Error fetching dashboard stats:", error);
+        log.error("Error fetching dashboard stats:", error);
       } finally {
         setIsLoading(false);
       }

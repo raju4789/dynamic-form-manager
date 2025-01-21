@@ -15,6 +15,7 @@ import { IField, ILanguage, UserFormRequest } from "../../types/Types";
 import { PageContainer, LanguageDropdownContainer, LanguageDropdown, FormContainer, FormHeader } from "./DynamicForm.styled";
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { submitFormData } from "../../services/UserFormService";
+import log from "../../logger";
 
 const DynamicForm: React.FC = () => {
 
@@ -83,7 +84,6 @@ const DynamicForm: React.FC = () => {
   
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        console.log("Form submitted:", formValues);
       
         const userFormRequest: UserFormRequest = {
           formId: crypto.randomUUID(),
@@ -92,7 +92,7 @@ const DynamicForm: React.FC = () => {
           formData: formValues,
         };
       
-        console.log("User form request:", userFormRequest);
+        log.debug("User form request:", userFormRequest);
       
         try {
           const response = await submitFormData(userFormRequest); // Get the response from submitFormData
@@ -100,7 +100,6 @@ const DynamicForm: React.FC = () => {
           if (response.status) {
             // If the response status is true, show success message
             setAlert({ message: "Form submitted successfully!", type: "success" });
-            console.log("Form submission response data:", response.formData);
           } else {
             // If the response status is false, show an error message
             setAlert({
@@ -109,7 +108,7 @@ const DynamicForm: React.FC = () => {
             });
           }
         } catch (error: any) {
-          console.error("Error submitting form data:", error.message || error);
+          log.error("Error submitting form data:", error.message || error);
           setAlert({
             message: `Failed to submit form: ${error.message || "Unknown error occurred"}`,
             type: "error",
@@ -118,7 +117,7 @@ const DynamicForm: React.FC = () => {
       };
 
       const onAllSubmittedFormsClick = ()=> {
-        
+
         navigate(`/forms/${id}/${getUserName()}`);
       }
   

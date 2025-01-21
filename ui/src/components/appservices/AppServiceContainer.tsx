@@ -5,6 +5,8 @@ import { getServices } from "../../services/FormManagementService";
 import { IService } from "../../types/Types";
 import { useNavigate } from "react-router";
 import { ServiceGrid, ServiceCard, IconContainer, PageContainer, PageHeader } from "./AppServiceContainer.styled";
+import log from "../../logger";
+import { COLORS } from "../../constants/ColorConstants";
 
 interface IServiceProps {
   id: string;
@@ -57,7 +59,7 @@ const AppServiceContainer: React.FC = () => {
         }));
         setServices(mappedServices);
       } catch (err) {
-        console.error("Error fetching services:", err);
+        log.error("Error fetching services:", err);
         setError("Failed to load services. Please try again later.");
       } finally {
         setIsLoading(false);
@@ -68,19 +70,8 @@ const AppServiceContainer: React.FC = () => {
   }, []);
 
   const getRandomColor = (): string => {
-    const colors = [
-      "#1565C0",
-      "#42A5F5",
-      "#E3F2FD",
-      "#FFCCBC",
-      "#FFAB91",
-      "#C8E6C9",
-      "#81C784",
-      "#FFF59D",
-      "#F48FB1",
-      "#ECEFF1",
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
+
+    return COLORS[Math.floor(Math.random() * COLORS.length)];
   };
 
   return (
