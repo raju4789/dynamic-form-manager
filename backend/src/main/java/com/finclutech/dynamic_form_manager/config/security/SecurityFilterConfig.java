@@ -52,6 +52,7 @@ public class SecurityFilterConfig {
                             .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll() // Swagger UI
                             .requestMatchers(new AntPathRequestMatcher("/swagger-ui.html")).permitAll() // Swagger UI
                             .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll() // API docs
+                            //.requestMatchers(new AntPathRequestMatcher("/ws/**")).permitAll() // Service Form Manager
                             .anyRequest().authenticated(); // All other endpoints require authentication
                 })
 
