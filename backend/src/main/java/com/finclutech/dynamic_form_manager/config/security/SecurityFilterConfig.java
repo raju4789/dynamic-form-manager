@@ -51,7 +51,9 @@ public class SecurityFilterConfig {
                             .requestMatchers(new AntPathRequestMatcher("/api/v1/auth/**")).permitAll() // Public endpoints
                             .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll() // Swagger UI
                             .requestMatchers(new AntPathRequestMatcher("/swagger-ui.html")).permitAll() // Swagger UI
-                            .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll() // API docs
+                            .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll() // Swagger API docs
+                            .requestMatchers(new AntPathRequestMatcher("/actuator/**")).permitAll() // Allow all Actuator endpoints
+                            .requestMatchers(new AntPathRequestMatcher("/api/v2/spans")).permitAll() // Jaeger endpoint
                             .anyRequest().authenticated(); // All other endpoints require authentication
                 })
 
