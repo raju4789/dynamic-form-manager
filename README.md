@@ -12,6 +12,11 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 - **Data Management**: Retrieve submitted data with advanced filtering, sorting, and pagination options.
 - **Dashboard Analytics**: Visualize submission trends and service usage statistics through interactive charts.
 - **Authentication & Authorization**: Secure endpoints with JWT-based authentication and role-based access control.
+- **API Documentation**: Access detailed API documentation through Swagger UI."
+- **Containerization**: Dockerize backend services for easy deployment and scalability.
+- **Database Integration**: Utilize MySQL and MongoDB for relational and document-based data storage.
+- **Testing**: Implement unit tests for backend services.
+- **Observability**: Implemented logging, metrics and tracing for monitoring application health.
 
 ### Frontend Capabilities
 - **Dynamic Form Rendering**: Automatically generate forms based on service configurations.
@@ -26,7 +31,7 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 ### Backend
 - **Language**: Java
 - **Framework**: Spring Boot
-- **Database**: MySQL (relational data) and MongoDB (form submissions)
+- **Database**: MySQL and MongoDB (form submissions)
 - **Authentication**: JWT
 - **Build Tool**: Maven
 - **Containerization**: Docker
@@ -75,7 +80,7 @@ dynamic-form-manager/
    ```
 2. Build the project:
    ```bash
-   ./mvnw clean install
+   docker-compose build --no-cache
    ```
 3. Start the backend services using Docker:
    ```bash
@@ -148,11 +153,9 @@ Access the Swagger API documentation at: [Swagger API Documentation](http://loca
 
 ## Demo
 
-Explore the application in action through the demo video(available in demo folder) and screenshots:
+Explore the application in action through the demo video(available in demo folder)
 
-[![Watch the demo](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo_thumbnail.png)](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo.mp4)
-
-### Screenshots
+### App Screenshots
 ![Screenshot 1](https://github.com/user-attachments/assets/7bebc4f2-87df-43ac-af57-5953f25396cd)
 ![Screenshot 2](https://github.com/user-attachments/assets/6dd4373f-48a8-457a-82e4-37e36361cdc8)
 ![Screenshot 3](https://github.com/user-attachments/assets/438036b5-c320-4aa2-b73b-01c21280e545)
@@ -160,6 +163,12 @@ Explore the application in action through the demo video(available in demo folde
 ![Screenshot 5](https://github.com/user-attachments/assets/f8f98068-0ca5-4146-9764-745d8717e275)
 
 ---
+
+### Grafana Dashboard
+![Grafana Dashboard](http://localhost:3000/)
+
+
+
 
 ## Git Repository
 
