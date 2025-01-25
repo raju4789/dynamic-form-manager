@@ -121,13 +121,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<CommonApiResponse<String>> handleUnAuthorisedException(UserUnAuthorizedException ex) {
         log.error("UserUnAuthorizedException occurred: {}", ex.getMessage(), ex);
         ErrorDetails errorDetails = ErrorDetails.builder()
-                .errorCode(HttpStatus.FORBIDDEN.value())
+                .errorCode(HttpStatus.BAD_REQUEST.value())
                 .errorMessage(ex.getMessage())
                 .build();
         CommonApiResponse<String> commonApiResponse = CommonApiResponse.<String>builder()
                 .errorDetails(errorDetails)
                 .build();
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(commonApiResponse);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(commonApiResponse);
     }
 
     /**
