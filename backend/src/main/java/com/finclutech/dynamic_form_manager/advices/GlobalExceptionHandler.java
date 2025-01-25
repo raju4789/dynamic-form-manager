@@ -3,7 +3,6 @@ package com.finclutech.dynamic_form_manager.advices;
 import com.finclutech.dynamic_form_manager.dtos.common.CommonApiResponse;
 import com.finclutech.dynamic_form_manager.dtos.common.ErrorDetails;
 import com.finclutech.dynamic_form_manager.exceptions.InvalidRequestException;
-import com.finclutech.dynamic_form_manager.exceptions.RecordAlreadyExistsException;
 import com.finclutech.dynamic_form_manager.exceptions.RecordNotFoundException;
 import com.finclutech.dynamic_form_manager.exceptions.UserUnAuthorizedException;
 import io.jsonwebtoken.security.SignatureException;
@@ -166,25 +165,6 @@ public class GlobalExceptionHandler {
                 .errorDetails(errorDetails)
                 .build();
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(commonApiResponse);
-    }
-
-    /**
-     * Handles RecordAlreadyExistsException and returns a BAD_REQUEST response.
-     *
-     * @param ex the RecordAlreadyExistsException
-     * @return ResponseEntity with error details
-     */
-    @ExceptionHandler(RecordAlreadyExistsException.class)
-    public ResponseEntity<CommonApiResponse<String>> handleRecordAlreadyExistsException(RecordAlreadyExistsException ex) {
-        log.error("RecordAlreadyExistsException occurred: {}", ex.getMessage(), ex);
-        ErrorDetails errorDetails = ErrorDetails.builder()
-                .errorCode(HttpStatus.BAD_REQUEST.value())
-                .errorMessage(ex.getMessage())
-                .build();
-        CommonApiResponse<String> commonApiResponse = CommonApiResponse.<String>builder()
-                .errorDetails(errorDetails)
-                .build();
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(commonApiResponse);
     }
 
     /**
