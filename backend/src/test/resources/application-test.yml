@@ -12,3 +12,5 @@ spring:
     init:
       mode: always
       data-locations: classpath:data-test.sql
+  main:
+    web-application-type: none # Disable the web server for tests
