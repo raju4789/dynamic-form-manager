@@ -3,7 +3,6 @@ import {
   useTable, useSortBy, useFilters, Column,
 } from 'react-table';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import {
   Box,
   CircularProgress,

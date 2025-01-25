@@ -9,6 +9,7 @@ import {
   TextField,
   Typography,
   Button,
+  SelectChangeEvent,
 } from '@mui/material';
 import { getFieldsByServiceId, getLanguages } from '../../services/FormManagementService';
 import { IField, ILanguage, UserFormRequest } from '../../types/Types';
@@ -74,9 +75,9 @@ const DynamicForm: React.FC = () => {
     validateForm();
   }, [formValues, fields]);
 
-  const handleLanguageChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setLanguage(event.target.value as number);
-  };
+  const handleLanguageChange = (event: SelectChangeEvent<number>) => {
+    setLanguage(Number(event.target.value)); // Convert the value to a number
+};
 
   const handleInputChange = (fieldName: string, value: string) => {
     setFormValues((prev) => ({ ...prev, [fieldName]: value }));

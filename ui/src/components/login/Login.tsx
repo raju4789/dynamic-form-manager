@@ -14,8 +14,7 @@ import {
   ICommonApiResponse,
   IErrorDetails,
   ILoginRequest,
-  ILoginResponse,
-  Role,
+  ILoginResponse
 } from '../../types/Types';
 import { loginUser } from '../../services/LoginService';
 import useLocalStorage from '../../hooks/useLocalStorage';
