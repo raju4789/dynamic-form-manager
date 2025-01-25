@@ -35,8 +35,8 @@ jobs:
 
       # Step 4: Build and test the backend
       - name: Build and test backend
-        working-directory: backend
         run: |
+          cd backend
           ./mvnw clean install
           ./mvnw test
 
@@ -57,8 +57,8 @@ jobs:
 
       # Step 7: Build and test the frontend
       - name: Build and test frontend
-        working-directory: ui
         run: |
+          cd ui
           npm install
           npm run build
           npm test
