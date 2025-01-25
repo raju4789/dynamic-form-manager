@@ -1,12 +1,12 @@
 name: CI/CD Pipeline
 
 on:
-  push:
+  push: # Trigger the workflow on every push
     branches:
-      - main
-  pull_request:
+      - '**' # This ensures the workflow runs on all branches
+  pull_request: # Trigger the workflow on pull requests
     branches:
-      - main
+      - '**' # This ensures the workflow runs on pull requests to all branches
 
 jobs:
   build:
