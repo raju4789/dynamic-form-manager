@@ -145,6 +145,7 @@ Access the Swagger API documentation at: [Swagger API Documentation](http://loca
 2. Implement caching to improve application response time
 3. Implement GZip compression to boost performance
 4. Integrate logging framework in UI
+5. Implement observability using grafana stack
 
 ## Demo
 
