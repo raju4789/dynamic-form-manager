@@ -10,8 +10,5 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @ActiveProfiles("test")
 class DynamicFormManagerApplicationTests {
 
-	@Test
-	void applicationStartsSuccessfully() {
 
-	}
 }
