@@ -82,3 +82,12 @@ jobs:
         with:
           name: cucumber-report
           path: backend/target/cucumber-report.json
+
+      # Step 11: Run Danger.js for Pull Request Summarization
+      - name: Run Danger.js
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install --save-dev danger
+          npx danger ci
