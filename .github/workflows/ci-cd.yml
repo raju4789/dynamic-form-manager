@@ -115,20 +115,29 @@ jobs:
           name: cucumber-report
           path: backend/target/cucumber-report.json
 
-  danger:
-    name: Run Danger.js
-    runs-on: ubuntu-latest
-    needs: [build-and-test, frontend]
-    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.job_to_run == 'all' || github.event.inputs.job_to_run == 'danger' }}
+danger:
+  name: Run Danger.js
+  runs-on: ubuntu-latest
+  needs: [build-and-test, frontend]
+  if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.job_to_run == 'all' || github.event.inputs.job_to_run == 'danger' }}
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-      - name: Install and Run Danger.js
-        if: github.event_name == 'pull_request'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm ci --save-dev danger
-          npx danger ci
+    - name: Install Dependencies for Danger.js
+      if: github.event_name == 'pull_request'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Navigate to the ui folder to install dependencies if needed
+        cd ui
+        if [ -f package-lock.json ]; then
+          npm ci
+        else
+          npm install
+        fi
+        # Return to the root directory to run Danger.js
+        cd ..
+        npm install --save-dev danger
+        npx danger ci
