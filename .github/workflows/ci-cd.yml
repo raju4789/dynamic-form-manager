@@ -63,7 +63,13 @@ jobs:
           npm run build
           npm test
 
-      # Step 8: Install Docker Compose and Build Docker images
+      # Step 8: Run Cucumber tests
+      - name: Run Cucumber tests
+        run: |
+          cd backend
+          ./mvnw test -Dcucumber.options="--plugin pretty"
+
+      # Step 9: Install Docker Compose and Build Docker images
       - name: Install Docker Compose and Build Docker images
         run: |
           sudo apt-get update
