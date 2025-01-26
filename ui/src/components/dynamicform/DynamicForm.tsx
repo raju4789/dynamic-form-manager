@@ -75,9 +75,9 @@ const DynamicForm: React.FC = () => {
     validateForm();
   }, [formValues, fields]);
 
-  const handleLanguageChange = (event: SelectChangeEvent<number>) => {
+  const handleLanguageChange = (event: SelectChangeEvent<unknown>) => {
     setLanguage(Number(event.target.value)); // Convert the value to a number
-};
+  };
 
   const handleInputChange = (fieldName: string, value: string) => {
     setFormValues((prev) => ({ ...prev, [fieldName]: value }));
@@ -90,7 +90,7 @@ const DynamicForm: React.FC = () => {
     const userFormRequest: UserFormRequest = {
       formId: crypto.randomUUID(),
       serviceId: +(id ?? 0),
-      userId: getUserName(),
+      userId: getUserName() as string,
       formData: formValues,
     };
 

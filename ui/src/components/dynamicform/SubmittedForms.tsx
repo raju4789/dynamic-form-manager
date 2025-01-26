@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-  useTable, useSortBy, useFilters, Column,
+  useTable,
+  useSortBy,
+  useGlobalFilter,
+  useFilters,
+  Column,
+  TableInstance,
 } from 'react-table';
 import { useParams } from 'react-router-dom';
 import {
@@ -46,13 +51,15 @@ const SubmittedForms: React.FC = () => {
   }, [serviceId, userId]);
 
   const tableColumns: Column<ApiResponse>[] = React.useMemo(
-    () => (formData.length > 0
-      ? Object.keys(formData[0]).map((key) => ({
-        Header: key,
-        accessor: key,
-      }))
-      : []),
-    [formData],
+    () =>
+      formData.length > 0
+        ? Object.keys(formData[0]).map((key) => ({
+            Header: key,
+            accessor: key,
+            disableSortBy: false, // Enable sorting
+          }))
+        : [],
+    [formData]
   );
 
   const {
@@ -61,14 +68,15 @@ const SubmittedForms: React.FC = () => {
     headerGroups,
     rows,
     prepareRow,
-    setFilter,
-  } = useTable<ApiResponse>(
+    setGlobalFilter,
+  }: TableInstance<ApiResponse> = useTable<ApiResponse>(
     {
       columns: tableColumns,
       data: formData,
     },
-    useFilters,
-    useSortBy,
+    useFilters, // Add useFilters for column-level filtering
+    useGlobalFilter, // Add useGlobalFilter for global filtering
+    useSortBy // Add useSortBy for sorting
   );
 
   if (loading) {
@@ -120,7 +128,7 @@ const SubmittedForms: React.FC = () => {
                     size="small"
                     variant="outlined"
                     placeholder={`Filter ${column.render('Header')}`}
-                    onChange={(e) => setFilter(column.id, e.target.value)}
+                    onChange={(e) => setGlobalFilter(e.target.value)}
                     style={{ marginTop: '8px', width: '100%' }}
                   />
                 </TableCell>

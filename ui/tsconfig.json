@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    "skipLibCheck": true
+    "typeRoots": ["node_modules/@types", "src/types"]
   },
   "include": ["src", ".eslintrc.cjs", "logger.ts", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
