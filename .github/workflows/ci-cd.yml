@@ -9,7 +9,8 @@ on:
       - main
 
 jobs:
-  build:
+  # Group 1: Backend Build and Tests
+  backend:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,8 +22,8 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: 17
+          distribution: temurin
 
       # Step 3: Cache Maven dependencies
       - name: Cache Maven dependencies
@@ -35,23 +36,38 @@ jobs:
 
       # Step 4: Build and run unit tests
       - name: Build and run unit tests
-        run: |
-          cd backend
-          ./mvnw clean install -P unit-tests
+        working-directory: backend
+        run: ./mvnw clean install -P unit-tests
 
       # Step 5: Run Cucumber integration tests
       - name: Run Cucumber integration tests
-        run: |
-          cd backend
-          ./mvnw verify -P integration-tests
+        working-directory: backend
+        run: ./mvnw verify -P integration-tests
 
-      # Step 6: Set up Node.js for frontend
+      # Step 6: Upload Cucumber Reports
+      - name: Upload Cucumber Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cucumber-report
+          path: backend/target/cucumber-report.json
+
+  # Group 2: Frontend Build and Tests
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js for frontend
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
-      # Step 7: Cache Node.js dependencies
+      # Step 3: Cache Node.js dependencies
       - name: Cache Node.js dependencies
         uses: actions/cache@v3
         with:
@@ -60,32 +76,42 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      # Step 8: Build and test the frontend
+      # Step 4: Build and test the frontend
       - name: Build and test frontend
+        working-directory: ui
         run: |
-          cd ui
-          npm install
+          npm ci
           npm run build
           npm test
 
-      # Step 9: Install Docker Compose and Build Docker images
+  # Group 3: Docker Build
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Install Docker Compose and Build Docker images
       - name: Install Docker Compose and Build Docker images
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
           docker-compose -f backend/docker-compose.yml build
 
-      # Step 10: Upload Cucumber Reports
-      - name: Upload Cucumber Reports
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: cucumber-report
-          path: backend/target/cucumber-report.json
+  # Group 4: Pull Request Summarization
+  danger:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
 
-      # Step 11: Run Danger.js for Pull Request Summarization
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Run Danger.js for Pull Request Summarization
       - name: Run Danger.js
-        if: github.event_name == 'pull_request'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
