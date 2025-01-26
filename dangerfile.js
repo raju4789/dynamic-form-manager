@@ -13,51 +13,43 @@ async function summarizePullRequest() {
   let summary = `
 ### Pull Request Summary
 - **Title**: ${prTitle}
-- **Description**: ${prBody || "No description provided."}
 `;
 
-  // Summarize changes in modified files
-  if (modifiedFiles.length > 0) {
-    summary += `\n#### Modified Files:\n`;
-    for (const file of modifiedFiles) {
-      const diff = await danger.git.diffForFile(file);
-      if (diff) {
-        summary += `- **${file}**: Updated with changes. Key highlights:\n`;
-        if (diff.added > 0) {
-          summary += `  - Added ${diff.added} lines.\n`;
-        }
-        if (diff.deleted > 0) {
-          summary += `  - Removed ${diff.deleted} lines.\n`;
-        }
-      }
-    }
-  }
+  // Generate a description based on changes
+  let description = "This pull request includes the following changes:\n";
 
-  // Summarize changes in created files
-  if (createdFiles.length > 0) {
-    summary += `\n#### Created Files:\n`;
-    for (const file of createdFiles) {
-      summary += `- **${file}**: New file added.\n`;
-    }
-  }
-
-  // Add a human-readable summary for specific types of changes
-  summary += `\n### Human-Readable Summary:\n`;
   if (createdFiles.some(file => file.includes("Controller"))) {
-    summary += `- Implemented new controllers to handle specific operations.\n`;
+    description += "- Implemented new controllers to handle specific operations, including error handling and logging.\n";
   }
   if (createdFiles.some(file => file.includes("ServiceImpl"))) {
-    summary += `- Developed new service implementations for business logic.\n`;
+    description += "- Developed new service implementations to handle business logic and integrate with external APIs.\n";
   }
   if (modifiedFiles.some(file => file.includes("test"))) {
-    summary += `- Added or updated unit tests to ensure functionality and error handling.\n`;
+    description += "- Added or updated unit tests to ensure functionality and proper error handling.\n";
   }
   if (modifiedFiles.some(file => file.includes("UI") || file.includes("frontend"))) {
-    summary += `- Updated UI components to integrate new functionality.\n`;
+    description += "- Updated UI components to integrate new functionality and improve user experience.\n";
   }
   if (modifiedFiles.some(file => file.includes("config") || file.includes(".yml"))) {
-    summary += `- Added or updated configuration files to support new features.\n`;
+    description += "- Added or updated configuration files to support new features and ensure compatibility.\n";
   }
+  if (modifiedFiles.some(file => file.includes("email") || file.includes("notification"))) {
+    description += "- Enhanced email or notification functionality, including logging and error handling.\n";
+  }
+
+  // Add a fallback description if no specific patterns are matched
+  if (description === "This pull request includes the following changes:\n") {
+    description += "- General updates and improvements were made in this pull request.\n";
+  }
+
+  // Add the description to the summary
+  summary += `- **Description**: ${description}\n`;
+
+  // Add a human-readable summary
+  summary += `
+### Human-Readable Summary:
+${description}
+`;
 
   // Post the summary as a comment on the pull request
   markdown(summary);
