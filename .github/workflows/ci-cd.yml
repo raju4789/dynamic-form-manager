@@ -67,7 +67,7 @@ jobs:
       - name: Run Cucumber tests
         run: |
           cd backend
-          ./mvnw test -Dcucumber.options="--plugin pretty"
+          ./mvnw test -Dcucumber.features="src/test/resources/features" -Dcucumber.options="--plugin pretty"
 
       # Step 9: Install Docker Compose and Build Docker images
       - name: Install Docker Compose and Build Docker images
