@@ -67,7 +67,7 @@ jobs:
       - name: Run Cucumber tests
         run: |
           cd backend
-          ./mvnw test -Dtest=DynamicFormManagerCucumberTest
+          ./mvnw verify -Dcucumber.options="--plugin pretty --plugin json:target/cucumber-report.json"
 
       # Step 9: Install Docker Compose and Build Docker images
       - name: Install Docker Compose and Build Docker images
@@ -75,3 +75,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
           docker-compose -f backend/docker-compose.yml build
+
+      # Step 10: Upload Cucumber Reports (Optional)
+      - name: Upload Cucumber Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cucumber-report
+          path: backend/target/cucumber-report.json
