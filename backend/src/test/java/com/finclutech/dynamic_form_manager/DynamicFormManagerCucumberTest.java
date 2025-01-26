@@ -6,6 +6,9 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources")
-public class DynamicFormManagerCucumberTestRunner {
+@CucumberOptions(
+        features = "src/test/resources",
+        glue = "com.finclutech.dynamic_form_manager.steps"
+)
+public class DynamicFormManagerCucumberTest {
 }
