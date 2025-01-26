@@ -115,6 +115,7 @@ jobs:
           name: cucumber-report
           path: backend/target/cucumber-report.json
 
+# Step 9: Run Danger.js
 danger:
   name: Run Danger.js
   runs-on: ubuntu-latest
