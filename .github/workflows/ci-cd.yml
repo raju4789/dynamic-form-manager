@@ -1,12 +1,12 @@
 name: CI/CD Pipeline
 
 on:
-  push: # Trigger the workflow on every push
+  push:
     branches:
-      - '**' # This ensures the workflow runs on all branches
-  pull_request: # Trigger the workflow on pull requests
+      - '**'
+  pull_request:
     branches:
-      - main # This ensures the workflow runs on pull requests to all branches
+      - main
 
 jobs:
   build:
@@ -33,20 +33,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # Step 4: Build and test the backend
-      - name: Build and test backend
+      # Step 4: Build and run unit tests
+      - name: Build and run unit tests
         run: |
           cd backend
-          ./mvnw clean install
-          ./mvnw test
+          ./mvnw clean install -P unit-tests
 
-      # Step 5: Set up Node.js for frontend
+      # Step 5: Run Cucumber integration tests
+      - name: Run Cucumber integration tests
+        run: |
+          cd backend
+          ./mvnw verify -P integration-tests
+
+      # Step 6: Set up Node.js for frontend
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # Step 6: Cache Node.js dependencies
+      # Step 7: Cache Node.js dependencies
       - name: Cache Node.js dependencies
         uses: actions/cache@v3
         with:
@@ -55,19 +60,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      # Step 7: Build and test the frontend
+      # Step 8: Build and test the frontend
       - name: Build and test frontend
         run: |
           cd ui
           npm install
           npm run build
           npm test
-
-      # Step 8: Run Cucumber tests
-      - name: Run Cucumber tests
-        run: |
-          cd backend
-          ./mvnw verify -Dcucumber.options="--plugin pretty --plugin json:target/cucumber-report.json"
 
       # Step 9: Install Docker Compose and Build Docker images
       - name: Install Docker Compose and Build Docker images
@@ -76,7 +75,7 @@ jobs:
           sudo apt-get install -y docker-compose
           docker-compose -f backend/docker-compose.yml build
 
-      # Step 10: Upload Cucumber Reports (Optional)
+      # Step 10: Upload Cucumber Reports
       - name: Upload Cucumber Reports
         if: always()
         uses: actions/upload-artifact@v3
