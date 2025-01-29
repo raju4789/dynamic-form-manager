@@ -92,7 +92,21 @@ dynamic-form-manager/
    ```bash
    docker-compose up -d
    ```
-4. Access the backend API at `http://localhost:8080`.
+
+4. Add vault secrets in vault ui using `http://0.0.0.0:8200/ui/vault/auth?with=token` and add below secrets
+
+```json
+{
+  "JWT_SECRET": "6a8e1e15d6b7892e8e6f13d7bc54b6c07d398c57923c8b2044973203e7023704",
+  "MONGO_URI": "mongodb://mongodb:27017/submissions_db",
+  "MYSQL_PASSWORD": "admin@2025",
+  "MYSQL_URL": "jdbc:mysql://mysql:3306/finclutech_db",
+  "MYSQL_USER": "admin"
+}
+```
+
+5. Access the backend API at `http://localhost:8080`.
+   
 
 ### Frontend Setup
 1. Navigate to the `ui` directory:
