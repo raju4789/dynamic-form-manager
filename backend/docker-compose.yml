@@ -80,6 +80,7 @@ services:
       - tempo
       - loki
       - prometheus
+      - vault
     networks:
       - app_network
 

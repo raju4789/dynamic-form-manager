@@ -29,7 +29,7 @@ spring:
       mode: always # Initialize SQL scripts on startup
   cloud:
     vault:
-      uri: http://localhost:8200
+      uri: http://vault:8200
       token: root
       kv:
         enabled: true
