@@ -9,7 +9,7 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 ### Backend Capabilities
 - **Dynamic Form Configuration**: Load and manage service-specific form fields dynamically from the database.
 - **Secure Data Submission**: Validate and store form submissions with robust security measures.
-- **Data Management**: Retrieve submitted data with advanced filtering, sorting, and pagination options.
+- **Data Management**: Retrieve submitted data with advanced filtering and sorting options.
 - **Dashboard Analytics**: Visualize submission trends and service usage statistics through interactive charts.
 - **Authentication & Authorization**: Secure endpoints with JWT-based authentication and role-based access control.
 
@@ -17,7 +17,7 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 - **Dynamic Form Rendering**: Automatically generate forms based on service configurations.
 - **User-Friendly Interface**: Intuitive and responsive UI for form submission and data visualization.
 - **Admin Dashboard**: Interactive metrics and charts for monitoring submissions and trends.
-- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Responsive Design**: Optimized for both desktop.
 
 ---
 
@@ -26,7 +26,7 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 ### Backend
 - **Language**: Java
 - **Framework**: Spring Boot
-- **Database**: MySQL (relational data) and MongoDB (form submissions)
+- **Database**: MySQL (service and user data) and MongoDB (form submissions)
 - **Authentication**: JWT
 - **Build Tool**: Maven
 - **Containerization**: Docker
@@ -56,9 +56,15 @@ dynamic-form-manager/
     ├── public/             # Static assets
     ├── Dockerfile          # Docker configuration for frontend
     └── package.json        # NPM configuration
+
 ```
 
 ---
+
+## DB Design
+
+![Dynamic From Manager DB Design](https://github.com/user-attachments/assets/35b06628-8f51-44c2-b58d-118636dd051c)
+
 
 ## Setup Instructions
 
@@ -144,6 +150,10 @@ Access the Swagger API documentation at: [Swagger API Documentation](http://loca
 1. Integrate Vault to read application secrets
 2. Implement caching to improve application response time
 3. Implement GZip compression to boost performance
+4. Integrate logging framework in UI
+5. Implement observability using grafana stack
+6. Integrate cucuumber integration testing framework and add integration tests
+7. Integrate CICD pipeline 
 
 ## Demo
 
