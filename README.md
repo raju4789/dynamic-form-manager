@@ -176,6 +176,8 @@ Explore the application in action through the demo video(available in demo folde
 ### Grafana Dashboard
 ![Grafana Dashboard](http://localhost:3000/)
 
+<img width="1700" alt="Screenshot 2568-01-23 at 18 05 59" src="https://github.com/user-attachments/assets/df307916-8404-47ec-b171-40b78de0a13d" />
+<img width="1726" alt="Screenshot 2568-01-23 at 18 07 11" src="https://github.com/user-attachments/assets/affd184a-ee55-4054-ad80-0d377d432a27" />
 
 
 
