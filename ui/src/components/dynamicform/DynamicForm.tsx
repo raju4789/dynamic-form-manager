@@ -130,7 +130,7 @@ const DynamicForm: React.FC = () => {
           ?.fieldValidationErrorMessage || "";
   
       switch (field.fieldType) {
-        case "number":
+        case "number":  // TODO: Get it from config
           return (
             <TextField
               fullWidth
@@ -155,7 +155,7 @@ const DynamicForm: React.FC = () => {
             />
           );
   
-        case "text":
+        case "text":  // TODO: Get it from config
           return (
             <TextField
               fullWidth
@@ -180,7 +180,7 @@ const DynamicForm: React.FC = () => {
             />
           );
   
-        case "option":
+        case "option": // TODO: Get it from config
           return (
             <Select
               fullWidth
@@ -276,7 +276,7 @@ const DynamicForm: React.FC = () => {
         <FormContainer>
           <FormHeader>
             <Typography variant="h4" component="h1" fontWeight="bold">
-              Service Form
+              Service Form 
             </Typography>
           </FormHeader>
           <form onSubmit={handleSubmit}>
