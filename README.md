@@ -9,7 +9,7 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 ### Backend Capabilities
 - **Dynamic Form Configuration**: Load and manage service-specific form fields dynamically from the database.
 - **Secure Data Submission**: Validate and store form submissions with robust security measures.
-- **Data Management**: Retrieve submitted data with advanced filtering, sorting, and pagination options.
+- **Data Management**: Retrieve submitted data with advanced filtering and sorting options.
 - **Dashboard Analytics**: Visualize submission trends and service usage statistics through interactive charts.
 - **Authentication & Authorization**: Secure endpoints with JWT-based authentication and role-based access control.
 
@@ -17,7 +17,7 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 - **Dynamic Form Rendering**: Automatically generate forms based on service configurations.
 - **User-Friendly Interface**: Intuitive and responsive UI for form submission and data visualization.
 - **Admin Dashboard**: Interactive metrics and charts for monitoring submissions and trends.
-- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Responsive Design**: Optimized for both desktop.
 
 ---
 
@@ -26,7 +26,7 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 ### Backend
 - **Language**: Java
 - **Framework**: Spring Boot
-- **Database**: MySQL (relational data) and MongoDB (form submissions)
+- **Database**: MySQL (service and user data) and MongoDB (form submissions)
 - **Authentication**: JWT
 - **Build Tool**: Maven
 - **Containerization**: Docker
