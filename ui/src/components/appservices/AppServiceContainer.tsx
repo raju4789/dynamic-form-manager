@@ -1,13 +1,14 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-import { CardContent, Typography, Grid, Box, CircularProgress } from "@mui/material";
-import { Computer } from "@mui/icons-material";
-import { getServices } from "../../services/FormManagementService";
-import { IService } from "../../types/Types";
-import { useNavigate } from "react-router";
-import { ServiceGrid, ServiceCard, IconContainer, PageContainer, PageHeader } from "./AppServiceContainer.styled";
-import log from "../../logger";
-import { COLORS } from "../../constants/ColorConstants";
+import React, { useState, useEffect } from 'react';
+import {
+  CardContent, Typography, Grid, Box, CircularProgress,
+} from '@mui/material';
+import { Computer } from '@mui/icons-material';
+import { useNavigate } from 'react-router';
+import { getServices } from '../../services/FormManagementService';
+import { IService } from '../../types/Types';
+import {
+  ServiceGrid, ServiceCard, IconContainer, PageContainer, PageHeader,
+} from './AppServiceContainer.styled';
 
 interface IServiceProps {
   id: string;
@@ -18,16 +19,18 @@ interface IServiceProps {
 }
 
 const createCircularColorPicker = (colors: string[]) => {
-  let index = 0; 
+  let index = 0;
 
   return (): string => {
-    const color = colors[index]; 
-    index = (index + 1) % colors.length; 
+    const color = colors[index];
+    index = (index + 1) % colors.length;
     return color;
   };
 };
 
-const Service: React.FC<IServiceProps> = ({ id, icon, title, description, backgroundColor }) => {
+const Service: React.FC<IServiceProps> = ({
+  id, icon, title, description, backgroundColor,
+}) => {
   const navigate = useNavigate();
 
   const handleServiceClick = () => {
@@ -75,6 +78,8 @@ const AppServiceContainer: React.FC = () => {
       } catch (err) {
         log.error("Error fetching services:", err);
         setError("Failed to load services. Please try again later.");
+        console.error('Error fetching services:', err);
+        setError('Failed to load services. Please try again later.');
       } finally {
         setIsLoading(false);
       }
@@ -92,7 +97,10 @@ const AppServiceContainer: React.FC = () => {
       </PageHeader>
 
       {isLoading ? (
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
+        <Box sx={{
+          display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh',
+        }}
+        >
           <CircularProgress color="primary" />
         </Box>
       ) : error ? (
