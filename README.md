@@ -12,6 +12,11 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 - **Data Management**: Retrieve submitted data with advanced filtering and sorting options.
 - **Dashboard Analytics**: Visualize submission trends and service usage statistics through interactive charts.
 - **Authentication & Authorization**: Secure endpoints with JWT-based authentication and role-based access control.
+- **API Documentation**: Access detailed API documentation through Swagger UI."
+- **Containerization**: Dockerize backend services for easy deployment and scalability.
+- **Database Integration**: Utilize MySQL and MongoDB for relational and document-based data storage.
+- **Testing**: Implement unit tests for backend services.
+- **Observability**: Implemented logging, metrics and tracing for monitoring application health.
 
 ### Frontend Capabilities
 - **Dynamic Form Rendering**: Automatically generate forms based on service configurations.
@@ -81,13 +86,27 @@ dynamic-form-manager/
    ```
 2. Build the project:
    ```bash
-   ./mvnw clean install
+   docker-compose build --no-cache
    ```
 3. Start the backend services using Docker:
    ```bash
    docker-compose up -d
    ```
-4. Access the backend API at `http://localhost:8080`.
+
+4. Add vault secrets in vault ui using `http://0.0.0.0:8200/ui/vault/auth?with=token` and add below secrets
+
+```json
+{
+  "JWT_SECRET": "6a8e1e15d6b7892e8e6f13d7bc54b6c07d398c57923c8b2044973203e7023704",
+  "MONGO_URI": "mongodb://mongodb:27017/submissions_db",
+  "MYSQL_PASSWORD": "admin@2025",
+  "MYSQL_URL": "jdbc:mysql://mysql:3306/finclutech_db",
+  "MYSQL_USER": "admin"
+}
+```
+
+5. Access the backend API at `http://localhost:8080`.
+   
 
 ### Frontend Setup
 1. Navigate to the `ui` directory:
@@ -157,11 +176,9 @@ Access the Swagger API documentation at: [Swagger API Documentation](http://loca
 
 ## Demo
 
-Explore the application in action through the demo video(available in demo folder) and screenshots:
+Explore the application in action through the demo video(available in demo folder)
 
-[![Watch the demo](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo_thumbnail.png)](https://github.com/raju4789/dynamic-form-manager/blob/main/demo/demo.mp4)
-
-### Screenshots
+### App Screenshots
 ![Screenshot 1](https://github.com/user-attachments/assets/7bebc4f2-87df-43ac-af57-5953f25396cd)
 ![Screenshot 2](https://github.com/user-attachments/assets/6dd4373f-48a8-457a-82e4-37e36361cdc8)
 ![Screenshot 3](https://github.com/user-attachments/assets/438036b5-c320-4aa2-b73b-01c21280e545)
@@ -169,6 +186,14 @@ Explore the application in action through the demo video(available in demo folde
 ![Screenshot 5](https://github.com/user-attachments/assets/f8f98068-0ca5-4146-9764-745d8717e275)
 
 ---
+
+### Grafana Dashboard
+![Grafana Dashboard](http://localhost:3000/)
+
+<img width="1700" alt="Screenshot 2568-01-23 at 18 05 59" src="https://github.com/user-attachments/assets/df307916-8404-47ec-b171-40b78de0a13d" />
+<img width="1726" alt="Screenshot 2568-01-23 at 18 07 11" src="https://github.com/user-attachments/assets/affd184a-ee55-4054-ad80-0d377d432a27" />
+
+
 
 ## Git Repository
 

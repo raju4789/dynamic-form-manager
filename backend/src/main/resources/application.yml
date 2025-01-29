@@ -29,7 +29,7 @@ spring:
       mode: always # Initialize SQL scripts on startup
   cloud:
     vault:
-      uri: http://localhost:8200
+      uri: http://vault:8200
       token: root
       kv:
         enabled: true
@@ -43,6 +43,8 @@ logging:
   level:
     org.hibernate.SQL: WARN # Log only warnings for SQL queries
     org.springframework.data.mongodb.core.MongoTemplate: WARN # Log only warnings for MongoDB queries
+  pattern:
+    correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
     org.springframework.cloud.vault: DEBUG
 
 server:
@@ -58,3 +60,27 @@ jwt:
   tokenPrefix: 'Bearer '
   authorizationHeaderString: Authorization
   headerSkipLength: 7
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  zipkin:
+    tracing:
+      endpoint: "http://tempo:9411/api/v2/spans"
+  endpoint:
+    health:
+      show:
+        details: "always"
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  tracing:
+    sampling:
+      probability: 1.0
+
+
