@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useTable, useSortBy, useFilters, Column } from "react-table";
+import { useTable, useSortBy, useFilters, Column, TableInstance, useGlobalFilter } from "react-table";
 import { useParams } from "react-router-dom";
 import {
   Box,

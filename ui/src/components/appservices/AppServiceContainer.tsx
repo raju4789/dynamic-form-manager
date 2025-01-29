@@ -9,6 +9,8 @@ import { IService } from '../../types/Types';
 import {
   ServiceGrid, ServiceCard, IconContainer, PageContainer, PageHeader,
 } from './AppServiceContainer.styled';
+import { COLORS } from '../../constants/ColorConstants';
+import log from '../../logger';
 
 interface IServiceProps {
   id: string;
@@ -76,9 +78,7 @@ const AppServiceContainer: React.FC = () => {
         }));
         setServices(mappedServices);
       } catch (err) {
-        log.error("Error fetching services:", err);
-        setError("Failed to load services. Please try again later.");
-        console.error('Error fetching services:', err);
+        log.error('Error fetching services:', err);
         setError('Failed to load services. Please try again later.');
       } finally {
         setIsLoading(false);
