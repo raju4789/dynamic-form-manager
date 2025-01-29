@@ -152,6 +152,8 @@ Access the Swagger API documentation at: [Swagger API Documentation](http://loca
 3. Implement GZip compression to boost performance
 4. Integrate logging framework in UI
 5. Implement observability using grafana stack
+6. Integrate cucuumber integration testing framework and add integration tests
+7. Integrate CICD pipeline 
 
 ## Demo
 
