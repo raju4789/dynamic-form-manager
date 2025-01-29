@@ -6,11 +6,6 @@ services:
     image: mysql:8.0
     container_name: mysql_container
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: "root$password" # Root password for MySQL
-      MYSQL_DATABASE: finclutech_db # Default database
-      MYSQL_USER: admin # MySQL user
-      MYSQL_PASSWORD: "admin@2025" # MySQL user password
     ports:
       - "3306:3306" # Expose MySQL on port 3306
     volumes:
@@ -70,12 +65,12 @@ services:
     networks:
       - app_network
 
-  # Spring Boot Service
-  spring-boot-app:
+  # backend-service
+  dynamic-form-manager:
     build:
       context: . # Use the current directory as the build context
       dockerfile: Dockerfile # Specify the Dockerfile to use
-    container_name: spring_boot_container
+    container_name: dynamic_form_manager_container
     restart: always
     ports:
       - "8080:8080" # Expose Spring Boot on port 8080
@@ -89,6 +84,22 @@ services:
       - mongodb
     networks:
       - app_network
+
+  # Vault Service
+  vault:
+    image: hashicorp/vault:1.18.3 # Use a specific version of Vault
+    container_name: vault_container
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: "root"
+      VAULT_DEV_LISTEN_ADDRESS: "0.0.0.0:8200"
+      VAULT_LOCAL_CONFIG: |
+        {
+          "ui": true
+        }
+    cap_add:
+      - IPC_LOCK
 
 volumes:
   mysql_data: # Volume for MySQL data persistence
