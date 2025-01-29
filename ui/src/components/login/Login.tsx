@@ -14,8 +14,7 @@ import {
   ICommonApiResponse,
   IErrorDetails,
   ILoginRequest,
-  ILoginResponse,
-  Role,
+  ILoginResponse
 } from '../../types/Types';
 import { loginUser } from '../../services/LoginService';
 import useLocalStorage from '../../hooks/useLocalStorage';
@@ -34,17 +33,17 @@ const Login: React.FC = () => {
       // Call the login API
       const response: AxiosResponse<ICommonApiResponse<ILoginResponse>> = await loginUser(data);
       const body: ICommonApiResponse<ILoginResponse> = response.data;
-  
+
       if (body.success) {
         // Handle successful login
         const { fullName, token, role } = body.data;
-  
+
         setFullName(fullName);
         localStorage.setItem('jwt', token);
         setUserName(data.username);
         setIsAuthenticated(true);
         setRole(role);
-  
+
         // Navigate to the services page
         navigate('/services');
       } else {
@@ -53,7 +52,7 @@ const Login: React.FC = () => {
           errorCode: 0,
           errorMessage: 'Unknown error',
         };
-  
+
         log.error('Login failed. Please try again.', errorDetails);
         setIsAuthenticated(false);
         setAPIErrorMessage(`Login failed with error: ${errorDetails.errorMessage}. Please try again.`);

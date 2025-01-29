@@ -74,7 +74,7 @@ const Header: React.FC = () => {
                 <StyledTypography variant="h6" color="inherit" noWrap>
                   Welcome
                   {' '}
-                  {getFullname()}
+                  {getFullname() as string}
                 </StyledTypography>
                 <StyledButton color="secondary" variant="outlined" onClick={onLogout}>
                   Logout

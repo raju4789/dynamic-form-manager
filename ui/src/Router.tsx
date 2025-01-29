@@ -23,20 +23,20 @@ const router = createBrowserRouter([
       },
       {
         path: 'services',
-        element: <AppServiceContainer />
+        element: <AppServiceContainer />,
       },
       {
         path: 'service/:id',
-        element: <DynamicForm />
+        element: <DynamicForm />,
       },
       {
         path: 'dashboard',
-        element: <Dashboard />
+        element: <Dashboard />,
       },
       {
         path: 'forms/:serviceId/:userId',
-        element: <SubmittedForms />
-      }
+        element: <SubmittedForms />,
+      },
     ],
   },
 ]);

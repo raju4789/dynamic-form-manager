@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import {
   ICommonApiResponse,
-  ILoginRequest, ILoginResponse
+  ILoginRequest, ILoginResponse,
 } from '../types/Types';
 
 const headers = {
@@ -15,4 +15,3 @@ const axiosInstance = axios.create({
 });
 
 export const loginUser = (loginCredentials: ILoginRequest): Promise<AxiosResponse<ICommonApiResponse<ILoginResponse>>> => axiosInstance.post('/authenticate', loginCredentials, { headers });
-

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { CardContent, Typography, Grid, Box, CircularProgress } from "@mui/material";
 import { Computer } from "@mui/icons-material";
@@ -67,8 +68,8 @@ const AppServiceContainer: React.FC = () => {
         const mappedServices = data.map((service) => ({
           id: service.serviceId,
           title: service.serviceName,
-          description: "Service description here",
-          icon: "Computer",
+          description: 'Service description here',
+          icon: 'Computer',
         }));
         setServices(mappedServices);
       } catch (err) {

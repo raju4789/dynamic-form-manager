@@ -39,37 +39,37 @@ const Container = styled(Box)(({ theme }) => ({
   padding: theme.spacing(4),
   marginTop: theme.spacing(8),
   backgroundColor: theme.palette.background.default,
-  minHeight: "100vh",
+  minHeight: '100vh',
 }));
 
 const Card = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[3],
-  height: "100%",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
   marginBottom: theme.spacing(4),
-  "&:hover": {
+  '&:hover': {
     boxShadow: theme.shadows[6],
   },
 }));
 
 const ChartContainer = styled(Box)(({ theme }) => ({
-  width: "100%",
+  width: '100%',
   height: 400,
   padding: theme.spacing(2),
   margin: theme.spacing(2),
 }));
 
 const Header = styled(Typography)(({ theme }) => ({
-  fontWeight: "bold",
+  fontWeight: 'bold',
   color: theme.palette.primary.main,
   marginBottom: theme.spacing(2),
 }));
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28DD0"];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28DD0'];
 
 const Dashboard: React.FC = () => {
   const [dashboardStats, setDashboardStats] = React.useState<DashboardStats>({
@@ -95,7 +95,7 @@ const Dashboard: React.FC = () => {
 
   const totalSubmissions = dashboardStats.totalSubmissionsPerService.reduce(
     (acc, curr) => acc + curr.totalSubmissions,
-    0
+    0,
   );
 
   if (isLoading) {
@@ -122,24 +122,24 @@ const Dashboard: React.FC = () => {
         <Grid item xs={12} md={4} marginBottom={5}>
           <Card
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              position: 'relative',
             }}
           >
             <Typography
               variant="h6"
               color="textSecondary"
               sx={{
-                position: "absolute",
-                top: "10px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                fontSize: "1.5rem",
-                fontWeight: "bold",
+                position: 'absolute',
+                top: '10px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
               }}
             >
               Total Submissions
@@ -148,8 +148,8 @@ const Dashboard: React.FC = () => {
               variant="h1"
               color="primary"
               sx={{
-                fontSize: "5rem",
-                fontWeight: "bold",
+                fontSize: '5rem',
+                fontWeight: 'bold',
               }}
             >
               {totalSubmissions}
@@ -164,7 +164,9 @@ const Dashboard: React.FC = () => {
               <ResponsiveContainer>
                 <BarChart
                   data={dashboardStats.totalSubmissionsPerService}
-                  margin={{ top: 20, right: 30, left: 30, bottom: 80 }}
+                  margin={{
+                    top: 20, right: 30, left: 30, bottom: 80,
+                  }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis
@@ -200,20 +202,18 @@ const Dashboard: React.FC = () => {
               <ResponsiveContainer>
                 <LineChart
                   data={dashboardStats.submissionTrends}
-                  margin={{ top: 20, right: 30, left: 30, bottom: 50 }}
+                  margin={{
+                    top: 20, right: 30, left: 30, bottom: 50,
+                  }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis
                     dataKey="date"
-                    tickFormatter={(date) =>
-                      new Date(date).toLocaleDateString()
-                    }
+                    tickFormatter={(date) => new Date(date).toLocaleDateString()}
                   />
                   <YAxis />
                   <Tooltip
-                    labelFormatter={(date) =>
-                      new Date(date).toLocaleDateString()
-                    }
+                    labelFormatter={(date) => new Date(date).toLocaleDateString()}
                   />
                   <Legend layout="horizontal" align="center" verticalAlign="bottom" />
                   <Line
@@ -251,7 +251,7 @@ const Dashboard: React.FC = () => {
                     fill="#8884d8"
                     label={(entry) => entry.serviceName}
                   >
-                    {dashboardStats.totalSubmissionsPerService.map((entry, index) => (
+                    {dashboardStats.totalSubmissionsPerService.map((_, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
