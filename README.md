@@ -93,7 +93,8 @@ dynamic-form-manager/
    docker-compose up -d
    ```
 
-4. Add vault secrets in vault ui using `http://0.0.0.0:8200/ui/vault/auth?with=token` and add below secrets
+4. Add vault secrets in vault ui using `http://0.0.0.0:8200/ui/vault/auth?with=token` with Token = `root`
+   and add below secrets
 
 ```json
 {
