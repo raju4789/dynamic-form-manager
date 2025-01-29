@@ -7,12 +7,11 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SpringBootTest
-@ActiveProfiles("test") // Use a test profile to avoid loading production configurations
+@ActiveProfiles("test")
 class DynamicFormManagerApplicationTests {
+    @Test
+    public void contextLoads() {
+        // This test will fail if the application context cannot be loaded
+    }
 
-	@Test
-	void applicationStartsSuccessfully() {
-		// This test ensures that the main method runs without exceptions
-		assertDoesNotThrow(() -> DynamicFormManagerApplication.main(new String[]{}));
-	}
 }

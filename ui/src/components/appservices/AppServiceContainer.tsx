@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { CardContent, Typography, Grid, Box, CircularProgress } from "@mui/material";
-import { Computer } from "@mui/icons-material";
-import { getServices } from "../../services/FormManagementService";
-import { IService } from "../../types/Types";
-import { useNavigate } from "react-router";
-import { ServiceGrid, ServiceCard, IconContainer, PageContainer, PageHeader } from "./AppServiceContainer.styled";
+import React, { useState, useEffect } from 'react';
+import {
+  CardContent, Typography, Grid, Box, CircularProgress,
+} from '@mui/material';
+import { Computer } from '@mui/icons-material';
+import { useNavigate } from 'react-router';
+import { getServices } from '../../services/FormManagementService';
+import { IService } from '../../types/Types';
+import {
+  ServiceGrid, ServiceCard, IconContainer, PageContainer, PageHeader,
+} from './AppServiceContainer.styled';
 
 interface IServiceProps {
   id: string;
@@ -14,7 +18,9 @@ interface IServiceProps {
   backgroundColor: string;
 }
 
-const Service: React.FC<IServiceProps> = ({ id, icon, title, description, backgroundColor }) => {
+const Service: React.FC<IServiceProps> = ({
+  id, icon, title, description, backgroundColor,
+}) => {
   const navigate = useNavigate();
 
   const handleServiceClick = () => {
@@ -52,13 +58,13 @@ const AppServiceContainer: React.FC = () => {
         const mappedServices = data.map((service) => ({
           id: service.serviceId,
           title: service.serviceName,
-          description: "Service description here",
-          icon: "Computer",
+          description: 'Service description here',
+          icon: 'Computer',
         }));
         setServices(mappedServices);
       } catch (err) {
-        console.error("Error fetching services:", err);
-        setError("Failed to load services. Please try again later.");
+        console.error('Error fetching services:', err);
+        setError('Failed to load services. Please try again later.');
       } finally {
         setIsLoading(false);
       }
@@ -69,16 +75,16 @@ const AppServiceContainer: React.FC = () => {
 
   const getRandomColor = (): string => {
     const colors = [
-      "#1565C0",
-      "#42A5F5",
-      "#E3F2FD",
-      "#FFCCBC",
-      "#FFAB91",
-      "#C8E6C9",
-      "#81C784",
-      "#FFF59D",
-      "#F48FB1",
-      "#ECEFF1",
+      '#1565C0',
+      '#42A5F5',
+      '#E3F2FD',
+      '#FFCCBC',
+      '#FFAB91',
+      '#C8E6C9',
+      '#81C784',
+      '#FFF59D',
+      '#F48FB1',
+      '#ECEFF1',
     ];
     return colors[Math.floor(Math.random() * colors.length)];
   };
@@ -92,7 +98,10 @@ const AppServiceContainer: React.FC = () => {
       </PageHeader>
 
       {isLoading ? (
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "50vh" }}>
+        <Box sx={{
+          display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh',
+        }}
+        >
           <CircularProgress color="primary" />
         </Box>
       ) : error ? (
