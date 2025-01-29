@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useTable, useSortBy, useFilters, Column } from "react-table";
+import { useTable, useSortBy, useFilters, Column, TableInstance, useGlobalFilter } from "react-table";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import {
   Box,
   CircularProgress,
@@ -32,10 +31,10 @@ const SubmittedForms: React.FC = () => {
       setLoading(true);
       setErrorMessage(null);
       try {
-        const response: GetFormDataByServiceIdAndUserIdResponse = await getFormDataByUserIdAndServiceId(serviceId || "", userId || "");
+        const response: GetFormDataByServiceIdAndUserIdResponse = await getFormDataByUserIdAndServiceId(serviceId || '', userId || '');
         setFormData(response.formData);
       } catch (err: any) {
-        setErrorMessage("Failed to fetch submitted forms. Please try again.");
+        setErrorMessage('Failed to fetch submitted forms. Please try again.');
       } finally {
         setLoading(false);
       }
@@ -50,6 +49,7 @@ const SubmittedForms: React.FC = () => {
         ? Object.keys(formData[0]).map((key) => ({
             Header: key,
             accessor: key,
+            disableSortBy: false, // Enable sorting
           }))
         : [],
     [formData]
@@ -61,14 +61,15 @@ const SubmittedForms: React.FC = () => {
     headerGroups,
     rows,
     prepareRow,
-    setFilter,
-  } = useTable<ApiResponse>(
+    setGlobalFilter,
+  }: TableInstance<ApiResponse> = useTable<ApiResponse>(
     {
       columns: tableColumns,
       data: formData,
     },
-    useFilters,
-    useSortBy
+    useFilters, // Add useFilters for column-level filtering
+    useGlobalFilter, // Add useGlobalFilter for global filtering
+    useSortBy // Add useSortBy for sorting
   );
 
   if (loading) {
@@ -102,26 +103,26 @@ const SubmittedForms: React.FC = () => {
       <Typography variant="h4" gutterBottom>
         Submitted Forms
       </Typography>
-      <Table {...getTableProps()} style={{ border: "1px solid #ddd", width: "100%" }}>
+      <Table {...getTableProps()} style={{ border: '1px solid #ddd', width: '100%' }}>
         <TableHead>
           {headerGroups.map((headerGroup) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <TableCell
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  style={{ fontWeight: "bold", cursor: "pointer" }}
+                  style={{ fontWeight: 'bold', cursor: 'pointer' }}
                 >
-                  {column.render("Header")}
+                  {column.render('Header')}
                   <TableSortLabel
                     active={column.isSorted}
-                    direction={column.isSortedDesc ? "desc" : "asc"}
+                    direction={column.isSortedDesc ? 'desc' : 'asc'}
                   />
                   <TextField
                     size="small"
                     variant="outlined"
-                    placeholder={`Filter ${column.render("Header")}`}
-                    onChange={(e) => setFilter(column.id, e.target.value)}
-                    style={{ marginTop: "8px", width: "100%" }}
+                    placeholder={`Filter ${column.render('Header')}`}
+                    onChange={(e) => setGlobalFilter(e.target.value)}
+                    style={{ marginTop: '8px', width: '100%' }}
                   />
                 </TableCell>
               ))}
@@ -134,7 +135,7 @@ const SubmittedForms: React.FC = () => {
             return (
               <TableRow {...row.getRowProps()}>
                 {row.cells.map((cell) => (
-                  <TableCell {...cell.getCellProps()}>{cell.render("Cell")}</TableCell>
+                  <TableCell {...cell.getCellProps()}>{cell.render('Cell')}</TableCell>
                 ))}
               </TableRow>
             );

@@ -18,7 +18,9 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "typeRoots": ["node_modules/@types", "src/types"]
   },
   "include": ["src", ".eslintrc.cjs", "logger.ts", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

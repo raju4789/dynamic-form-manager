@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Alert from "@mui/material/Alert";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import ErrorIcon from "@mui/icons-material/Error";
-import styled from "styled-components";
+import { useEffect, useState } from 'react';
+import Alert from '@mui/material/Alert';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import styled from 'styled-components';
 
 interface AlertBannerProps {
   message?: string;
-  type?: "success" | "error";
+  type?: 'success' | 'error';
   duration?: number;
 }
 
@@ -33,8 +33,8 @@ const StyledAlert = styled(Alert)`
 `;
 
 const AlertBanner = ({
-  message = "Alert message",
-  type = "success",
+  message = 'Alert message',
+  type = 'success',
   duration = 5000,
 }: AlertBannerProps) => {
   const [visible, setVisible] = useState(true);
@@ -52,12 +52,12 @@ const AlertBanner = ({
   return (
     <StyledAlert
       severity={type}
-      icon={type === "success" ? <CheckCircleIcon /> : <ErrorIcon />}
+      icon={type === 'success' ? <CheckCircleIcon /> : <ErrorIcon />}
       sx={{
-        backgroundColor: type === "success" ? "#f0fdf4" : "#fef2f2",
-        color: type === "success" ? "#166534" : "#991b1b",
-        "& .MuiAlert-icon": {
-          color: type === "success" ? "#16a34a" : "#dc2626",
+        backgroundColor: type === 'success' ? '#f0fdf4' : '#fef2f2',
+        color: type === 'success' ? '#166534' : '#991b1b',
+        '& .MuiAlert-icon': {
+          color: type === 'success' ? '#16a34a' : '#dc2626',
         },
       }}
     >

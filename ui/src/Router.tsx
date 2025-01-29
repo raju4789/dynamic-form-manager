@@ -5,11 +5,13 @@ import AppServiceContainer from './components/appservices/AppServiceContainer';
 import DynamicForm from './components/dynamicform/DynamicForm';
 import Dashboard from './components/dashbaord/Dashboard';
 import SubmittedForms from './components/dynamicform/SubmittedForms';
+import { ErrorPage } from './components/error/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -21,20 +23,20 @@ const router = createBrowserRouter([
       },
       {
         path: 'services',
-        element: <AppServiceContainer />
+        element: <AppServiceContainer />,
       },
       {
         path: 'service/:id',
-        element: <DynamicForm />
+        element: <DynamicForm />,
       },
       {
         path: 'dashboard',
-        element: <Dashboard />
+        element: <Dashboard />,
       },
       {
         path: 'forms/:serviceId/:userId',
-        element: <SubmittedForms />
-      }
+        element: <SubmittedForms />,
+      },
     ],
   },
 ]);

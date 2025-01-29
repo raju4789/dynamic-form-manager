@@ -78,7 +78,7 @@ export interface IFieldOption {
 export interface IField {
   fieldId: number;
   fieldName: string;
-  fieldType: "text" | "number" | "option";
+  fieldType: 'text' | 'number' | 'option';
   fieldValidation: string;
   fieldValidationErrorMessages: IFieldValidationErrorMessage[];
   labels: ILabel[];
@@ -86,6 +86,7 @@ export interface IField {
   maxLength: number;
   defaultValue: string;
   fieldOptions: IFieldOption[];
+  isRequired: boolean
 }
 
 export interface ILanguage {
@@ -113,7 +114,7 @@ export interface SubmissionPerService {
 }
 
 interface SubmissionTrend {
-  date: string; 
+  date: string;
   totalSubmissions: number;
 }
 
@@ -125,12 +126,10 @@ export interface UserFormRequest {
 }
 
 export interface UserFormResponse {
-  status: boolean; 
-  formData: Record<string, any>; 
+  status: boolean;
+  formData: Record<string, any>;
 }
 
 export interface GetFormDataByServiceIdAndUserIdResponse {
-  formData: Record<string, any>[]; 
+  formData: Record<string, any>[];
 }
-
-

@@ -2,7 +2,7 @@ spring:
   application:
     name: dynamic-form-manager
   jpa:
-    generate-ddl: true  #Generate DDL for the database schema
+    generate-ddl: true  # Generate DDL for the database schema
     hibernate:
       ddl-auto: update
     show-sql: true
@@ -27,6 +27,17 @@ spring:
   sql:
     init:
       mode: always # Initialize SQL scripts on startup
+  cloud:
+    vault:
+      uri: http://localhost:8200
+      token: root
+      kv:
+        enabled: true
+        backend: secret
+        default-context: "kv/dynamic-form-manager"
+  config:
+    import: vault://
+
 
 logging:
   level:
@@ -34,13 +45,18 @@ logging:
     org.springframework.data.mongodb.core.MongoTemplate: WARN # Log only warnings for MongoDB queries
   pattern:
     correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+    org.springframework.cloud.vault: DEBUG
 
 server:
   port: ${SERVER_PORT:8080} # Default Spring Boot application port
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types: text/html, text/xml, text/plain, application/json, application/xml
 
 jwt:
-  secret: "6a8e1e15d6b7892e8e6f13d7bc54b6c07d398c57923c8b2044973203e7023704" # TODO: Get it from vault
-  expirationTime: 86400000
+  secret: ${JWT_SECRET:6a8e1e15d6b7892e8e6f13d7bc54b6c07d398c57923c8b2044973203e7023704 }
+  expirationTime: ${JWT_EXPIRATION_TIME:86400000}
   tokenPrefix: 'Bearer '
   authorizationHeaderString: Authorization
   headerSkipLength: 7

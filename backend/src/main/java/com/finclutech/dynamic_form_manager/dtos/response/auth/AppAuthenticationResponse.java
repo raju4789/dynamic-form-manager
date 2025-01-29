@@ -1,4 +1,4 @@
-package com.finclutech.dynamic_form_manager.dtos.requests.auth;
+package com.finclutech.dynamic_form_manager.dtos.response.auth;
 
 import lombok.*;
 

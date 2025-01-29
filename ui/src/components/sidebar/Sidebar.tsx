@@ -34,12 +34,9 @@ export default function Sidebar(props: ISidebarProps) {
     navigate('/dashboard');
   };
 
-
   const handleHomeClick = () => {
     navigate('/services');
   };
-
-
 
   const list = (anchor: Anchor) => (
     <Box
