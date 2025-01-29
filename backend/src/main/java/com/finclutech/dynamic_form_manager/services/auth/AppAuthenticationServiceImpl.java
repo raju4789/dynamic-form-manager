@@ -1,8 +1,8 @@
 package com.finclutech.dynamic_form_manager.services.auth;
 
 import com.finclutech.dynamic_form_manager.dtos.requests.auth.AppAuthenticationRequest;
-import com.finclutech.dynamic_form_manager.dtos.requests.auth.AppAuthenticationResponse;
-import com.finclutech.dynamic_form_manager.dtos.requests.auth.AppTokenValidationResponse;
+import com.finclutech.dynamic_form_manager.dtos.response.auth.AppAuthenticationResponse;
+import com.finclutech.dynamic_form_manager.dtos.response.auth.AppTokenValidationResponse;
 import com.finclutech.dynamic_form_manager.entities.sql.auth.AppUser;
 import com.finclutech.dynamic_form_manager.exceptions.RecordNotFoundException;
 import com.finclutech.dynamic_form_manager.exceptions.UserUnAuthorizedException;
