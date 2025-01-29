@@ -56,9 +56,15 @@ dynamic-form-manager/
     ├── public/             # Static assets
     ├── Dockerfile          # Docker configuration for frontend
     └── package.json        # NPM configuration
+
 ```
 
 ---
+
+## DB Design
+
+![Dynamic From Manager DB Design](https://github.com/user-attachments/assets/35b06628-8f51-44c2-b58d-118636dd051c)
+
 
 ## Setup Instructions
 
