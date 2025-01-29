@@ -5,11 +5,13 @@ import AppServiceContainer from './components/appservices/AppServiceContainer';
 import DynamicForm from './components/dynamicform/DynamicForm';
 import Dashboard from './components/dashbaord/Dashboard';
 import SubmittedForms from './components/dynamicform/SubmittedForms';
+import { ErrorPage } from './components/error/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

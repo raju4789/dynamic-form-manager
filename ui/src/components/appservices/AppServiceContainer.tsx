@@ -9,6 +9,8 @@ import { IService } from '../../types/Types';
 import {
   ServiceGrid, ServiceCard, IconContainer, PageContainer, PageHeader,
 } from './AppServiceContainer.styled';
+import { COLORS } from '../../constants/ColorConstants';
+import log from '../../logger';
 
 interface IServiceProps {
   id: string;
@@ -17,6 +19,16 @@ interface IServiceProps {
   description: string;
   backgroundColor: string;
 }
+
+const createCircularColorPicker = (colors: string[]) => {
+  let index = 0;
+
+  return (): string => {
+    const color = colors[index];
+    index = (index + 1) % colors.length;
+    return color;
+  };
+};
 
 const Service: React.FC<IServiceProps> = ({
   id, icon, title, description, backgroundColor,
@@ -49,6 +61,9 @@ const AppServiceContainer: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Create a circular color picker instance
+  const getNextColor = createCircularColorPicker(COLORS);
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -63,7 +78,7 @@ const AppServiceContainer: React.FC = () => {
         }));
         setServices(mappedServices);
       } catch (err) {
-        console.error('Error fetching services:', err);
+        log.error('Error fetching services:', err);
         setError('Failed to load services. Please try again later.');
       } finally {
         setIsLoading(false);
@@ -72,22 +87,6 @@ const AppServiceContainer: React.FC = () => {
 
     fetchData();
   }, []);
-
-  const getRandomColor = (): string => {
-    const colors = [
-      '#1565C0',
-      '#42A5F5',
-      '#E3F2FD',
-      '#FFCCBC',
-      '#FFAB91',
-      '#C8E6C9',
-      '#81C784',
-      '#FFF59D',
-      '#F48FB1',
-      '#ECEFF1',
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
-  };
 
   return (
     <PageContainer>
@@ -117,7 +116,7 @@ const AppServiceContainer: React.FC = () => {
               icon={<Computer />}
               title={service.title}
               description={service.description}
-              backgroundColor={getRandomColor()}
+              backgroundColor={getNextColor()} // Use circular color picker
             />
           ))}
         </Grid>

@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { DashboardData, ICommonApiResponse } from '../types/Types';
+import log from "../logger";
 
 // Create an Axios instance
 const axiosInstance: AxiosInstance = axios.create({
@@ -21,16 +22,19 @@ axiosInstance.interceptors.request.use(
   },
   (error) => {
     // Handle request errors
-    console.error('Request error:', error);
+    log.error("Request error:", error);
     return Promise.reject(error);
   },
 );
 
 // API function to get dashboard stats
 export const getDashboardStats = async (): Promise<DashboardData> => {
-  const response: AxiosResponse<ICommonApiResponse<DashboardData>> = await axiosInstance.get('/stats');
-  if (response.data.success) {
-    return response.data.data;
-  }
-  throw new Error(response.data.errorDetails?.errorMessage || 'Failed to fetch dashboard stats');
-};
+    const response: AxiosResponse<ICommonApiResponse<DashboardData>> = await axiosInstance.get("/stats");
+    if (response.data.success) {
+      return response.data.data;
+    } else {
+      const errorMessage = response.data.errorDetails?.errorMessage || "Failed to fetch dashboard stats";
+      log.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+  };

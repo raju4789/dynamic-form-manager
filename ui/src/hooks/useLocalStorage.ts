@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import log from '../logger';
 
 const useLocalStorage = <T>(key: string) => {
   /**
@@ -10,7 +11,7 @@ const useLocalStorage = <T>(key: string) => {
       const serializedValue = JSON.stringify(value);
       localStorage.setItem(key, serializedValue);
     } catch (error) {
-      console.error(`Error saving key "${key}" to localStorage:`, error);
+      log.error(`Error saving key "${key}" to localStorage:`, error);
     }
   }, [key]);
 
@@ -23,7 +24,7 @@ const useLocalStorage = <T>(key: string) => {
       const item = localStorage.getItem(key);
       return item ? (JSON.parse(item) as T) : null;
     } catch (error) {
-      console.error(`Error reading key "${key}" from localStorage:`, error);
+      log.error(`Error reading key "${key}" from localStorage:`, error);
       return null;
     }
   }, [key]);
@@ -35,7 +36,7 @@ const useLocalStorage = <T>(key: string) => {
     try {
       localStorage.removeItem(key);
     } catch (error) {
-      console.error(`Error removing key "${key}" from localStorage:`, error);
+      log.error(`Error removing key "${key}" from localStorage:`, error);
     }
   }, [key]);
 
@@ -46,7 +47,7 @@ const useLocalStorage = <T>(key: string) => {
     try {
       localStorage.clear();
     } catch (error) {
-      console.error('Error clearing localStorage:', error);
+      log.error('Error clearing localStorage:', error);
     }
   }, []);
 

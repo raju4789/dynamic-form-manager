@@ -1,8 +1,6 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
-import {
-  Typography, Grid, Box, Paper, Divider, CircularProgress,
-} from '@mui/material';
+import React from "react";
+import { styled } from "@mui/material/styles";
+import { Typography, Grid, Box, Paper, Divider, CircularProgress } from "@mui/material";
 import {
   BarChart,
   Bar,
@@ -17,8 +15,9 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-} from 'recharts';
-import { getDashboardStats } from '../../services/DashboardService';
+} from "recharts";
+import { getDashboardStats } from "../../services/DashboardService";
+import log from "../../logger";
 
 interface ServiceSubmission {
   serviceId: number;
@@ -85,7 +84,7 @@ const Dashboard: React.FC = () => {
         const data = await getDashboardStats();
         setDashboardStats(data);
       } catch (error) {
-        console.error('Error fetching dashboard stats:', error);
+        log.error("Error fetching dashboard stats:", error);
       } finally {
         setIsLoading(false);
       }

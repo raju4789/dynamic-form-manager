@@ -1,13 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import {
-  useTable,
-  useSortBy,
-  useGlobalFilter,
-  useFilters,
-  Column,
-  TableInstance,
-} from 'react-table';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useTable, useSortBy, useFilters, Column, TableInstance, useGlobalFilter } from "react-table";
+import { useParams } from "react-router-dom";
 import {
   Box,
   CircularProgress,
@@ -19,9 +12,9 @@ import {
   TableRow,
   TableSortLabel,
   TextField,
-} from '@mui/material';
-import { getFormDataByUserIdAndServiceId } from '../../services/UserFormService';
-import { GetFormDataByServiceIdAndUserIdResponse } from '../../types/Types';
+} from "@mui/material";
+import { getFormDataByUserIdAndServiceId } from "../../services/UserFormService";
+import { GetFormDataByServiceIdAndUserIdResponse } from "../../types/Types";
 
 interface ApiResponse {
   [key: string]: any;
