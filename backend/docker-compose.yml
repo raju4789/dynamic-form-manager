@@ -159,3 +159,4 @@ volumes:
 
 networks:
   app_network: # Custom network for container communication
+    driver: bridge
