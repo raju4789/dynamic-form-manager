@@ -22,7 +22,7 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 - **Dynamic Form Rendering**: Automatically generate forms based on service configurations.
 - **User-Friendly Interface**: Intuitive and responsive UI for form submission and data visualization.
 - **Admin Dashboard**: Interactive metrics and charts for monitoring submissions and trends.
-- **Responsive Design**: Optimized for both desktop.
+- **Responsive Design**: Optimized for desktop.
 
 ---
 
