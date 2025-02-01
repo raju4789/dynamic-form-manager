@@ -47,7 +47,7 @@ jobs:
       # Step 6: Upload Cucumber Reports
       - name: Upload Cucumber Reports
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cucumber-report
           path: backend/target/cucumber-report.json
