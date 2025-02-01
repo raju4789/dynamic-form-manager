@@ -1,32 +1,10 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import {
   GetFormDataByServiceIdAndUserIdResponse, ICommonApiResponse, UserFormRequest, UserFormResponse,
 } from '../types/Types';
+import createAxiosInstance from '../utils/AxiosInstanceFactory';
 
-// Create an Axios instance
-const axiosInstance: AxiosInstance = axios.create({
-  baseURL: '/api/v1/form',
-  headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  },
-});
-
-// Add an interceptor to dynamically set the Authorization header
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    // Handle request errors
-    console.error('Request error:', error);
-    return Promise.reject(error);
-  },
-);
+const axiosInstance = createAxiosInstance('/api/v1/form');
 
 // API function to submit form data
 export const submitFormData = async (data: UserFormRequest): Promise<UserFormResponse> => {
