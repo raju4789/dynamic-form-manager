@@ -179,6 +179,7 @@ Explore the application in action through the demo video(available in demo folde
 ![Screenshot 3](https://github.com/user-attachments/assets/438036b5-c320-4aa2-b73b-01c21280e545)
 ![Screenshot 4](https://github.com/user-attachments/assets/f01a59a0-f3bf-4c21-80ac-6d14be187661)
 ![Screenshot 5](https://github.com/user-attachments/assets/f8f98068-0ca5-4146-9764-745d8717e275)
+<img width="1726" alt="Screenshot 2568-02-16 at 17 44 48" src="https://github.com/user-attachments/assets/fa06b8c8-3860-4a28-af03-cb2feb4fe807" />
 
 ---
 
