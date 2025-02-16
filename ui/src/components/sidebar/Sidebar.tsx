@@ -8,8 +8,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { AddBox } from '@mui/icons-material';
 import { useNavigate } from 'react-router';
-import { Anchor, Role } from '../../types/Types';
+import { Anchor } from '../../types/Types';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { UserRole } from '../../constants/roles';
 
 interface ISidebarProps {
   sideBarDirection: { left: boolean; };
@@ -26,7 +27,7 @@ export default function Sidebar(props: ISidebarProps) {
 
   const sideBarItems: string[] = ['Home'];
 
-  if (getIsAuthenticated() && getRole() === Role.ADMIN) {
+  if (getIsAuthenticated() && getRole() === UserRole.ADMIN) {
     sideBarItems.push('Dashboard');
   }
 

@@ -49,7 +49,6 @@ export interface DropdownOption {
 }
 
 export type Anchor = 'top' | 'left' | 'bottom' | 'right';
-export enum Role { ADMIN = 'ADMIN', USER = 'USER' }
 
 export interface IFieldValidationErrorMessage {
   languageId: number;

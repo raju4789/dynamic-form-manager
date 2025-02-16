@@ -9,7 +9,7 @@ import { IService } from '../../types/Types';
 import {
   ServiceGrid, ServiceCard, IconContainer, PageContainer, PageHeader,
 } from './AppServiceContainer.styled';
-import { COLORS } from '../../constants/ColorConstants';
+import { COLORS } from '../../constants/colors';
 import log from '../../logger';
 
 interface IServiceProps {

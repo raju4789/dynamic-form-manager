@@ -7,6 +7,7 @@ import Dashboard from './components/dashbaord/Dashboard';
 import SubmittedForms from './components/dynamicform/SubmittedForms';
 import { ErrorPage } from './components/error/ErrorPage';
 import ProtectedRoute from './components/protected/ProtectedRoute'; 
+import { UserRole } from './constants/roles';
 
 const router = createBrowserRouter([
   {
@@ -39,12 +40,18 @@ const router = createBrowserRouter([
             element: <DynamicForm />,
           },
           {
-            path: 'dashboard',
-            element: <Dashboard />,
-          },
-          {
             path: 'forms/:serviceId/:userId',
             element: <SubmittedForms />,
+          },
+        ],
+      },
+      // Protected route with role-based access for dashboard
+      {
+        element: <ProtectedRoute allowedRoles={[UserRole.ADMIN]} />, // Only allow ADMIN role
+        children: [
+          {
+            path: 'dashboard',
+            element: <Dashboard />,
           },
         ],
       },
