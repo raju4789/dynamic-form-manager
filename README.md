@@ -105,6 +105,9 @@ dynamic-form-manager/
   "MYSQL_USER": "admin"
 }
 ```
+<img width="1727" alt="Screenshot 2568-02-16 at 15 57 48" src="https://github.com/user-attachments/assets/940d13b9-2754-4d7c-ae44-fbdf67c914bb" />
+
+
 
 5. Access the backend API at `http://localhost:8080`.
    
