@@ -27,6 +27,9 @@ Dynamic Form Manager is a comprehensive full-stack web application designed to s
 ### DEVOPS Capabilities
 - This project features a robust DevOps setup with an integrated Continuous Integration (CI) pipeline triggered for every pull request. The pipeline ensures high-quality code by running automated tests, performing code quality checks, validating builds, and scanning for vulnerabilities. It supports scalable configurations for different environments and provides real-time notifications and detailed reports on test results, code coverage, and build performance. With built-in security checks and compliance tools, the pipeline fosters collaboration, enhances code reliability, and ensures adherence to industry standards, enabling seamless development and deployment processes.
 
+  <img width="1454" alt="Screenshot 2568-02-18 at 09 05 38" src="https://github.com/user-attachments/assets/cda5f15d-c3db-4b67-9454-96e75542826e" />
+
+
 ---
 
 ## Tech Stack
